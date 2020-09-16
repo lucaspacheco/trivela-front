@@ -10,6 +10,7 @@
     "test": "jest",
     "lint": "eslint ."
   },
+  "browserslist": ">2%, not ie 11, not UCAndroid >0, not OperaMini all, not dead",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "axios": "^0.20.0",
