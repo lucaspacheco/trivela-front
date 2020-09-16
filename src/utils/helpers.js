@@ -38,9 +38,43 @@ export const setCookie = (cname, cvalue, exdays = 4) => {
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
   const expires = `expires=${d.toGMTString()}`;
 
-  const cookieDefinition = `${cname}=${cvalue};${expires};path=/`;
+  const cookieDefinition = `${cname}=${cvalue || ''};${expires};path=/`;
 
   document.cookie = cookieDefinition;
 
   return cookieDefinition;
+};
+
+/**
+ * Validats a CPF
+ *
+ * @param {string} cname The cpf to be validated
+ *
+ * @returns {boolean} True if CPF is valid, false otherwise.
+ */
+export const isValidCPF = (CPF = '') => {
+  if (
+    CPF.length !== 14 ||
+    !Array.from(CPF).filter((e) => e !== CPF[0]).length
+  ) {
+    return false;
+  }
+
+  const internalCPF = CPF.replace(/[\s.-]*/gim, '');
+
+  let sum = 0;
+  let rest;
+
+  for (let i = 1; i <= 9; i += 1)
+    sum += Number(internalCPF.substring(i - 1, i)) * (11 - i);
+  rest = (sum * 10) % 11;
+  if (rest === 10 || rest === 11) rest = 0;
+  if (rest !== Number(internalCPF.substring(9, 10))) return false;
+  sum = 0;
+  for (let i = 1; i <= 10; i += 1)
+    sum += Number(internalCPF.substring(i - 1, i)) * (12 - i);
+  rest = (sum * 10) % 11;
+  if (rest === 10 || rest === 11) rest = 0;
+  if (rest !== Number(internalCPF.substring(10, 11))) return false;
+  return true;
 };
