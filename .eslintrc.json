@@ -13,13 +13,16 @@
         "map": [
           ["assets", "./src/assets"],
           ["components", "./src/components"],
-          ["styles", "./src/styles"]
+          ["pages", "./src/pages"],
+          ["services", "./src/services"],
+          ["styles", "./src/styles"],
+          ["utils", "./src/utils"]
         ],
         "extensions": [".js"]
       }
     }
   },
-  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -27,7 +30,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks"],
+  "plugins": ["react", "react-hooks", "prettier"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
