@@ -7,6 +7,16 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["assets", "./src/assets"],
+          ["components", "./src/components"],
+          ["styles", "./src/styles"]
+        ],
+        "extensions": [".js"]
+      }
     }
   },
   "extends": ["airbnb", "plugin:prettier/recommended"],
