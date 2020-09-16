@@ -1,18 +1,28 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createMuiTheme, colors } from '@material-ui/core';
 
 export default createMuiTheme({
+  palette: {
+    primary: {
+      light: '#669c25',
+      main: '#415e1e',
+      dark: '#2D4115',
+    },
+  },
+  typography: {
+    htmlFontSize: 10,
+  },
   overrides: {
+    MuiSvgIcon: {
+      root: {
+        color: colors.grey[600],
+      },
+    },
     MuiCssBaseline: {
       '@global': {
         html: {
           fontSize: '62.5%',
-          height: '100%',
         },
-        body: {
-          fontSize: '1rem',
-          height: '100%',
-        },
-        '#app': {
+        'html, body, #app': {
           height: '100%',
         },
         '*': {
