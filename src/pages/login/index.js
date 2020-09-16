@@ -138,6 +138,12 @@ const Login = () => {
             </Typography>
           )}
 
+          <Typography className={classes.forgotPassword} variant="caption">
+            <Link component={RouterLink} to="/login">
+              Esqueci minha senha
+            </Link>
+          </Typography>
+
           {mutationError?.message && (
             <Typography color="error" className={classes.mutationErrorMessage}>
               {mutationError.message}

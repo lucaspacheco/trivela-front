@@ -32,6 +32,9 @@ export default makeStyles((theme) => ({
     alignSelf: 'flex-start',
     marginTop: theme.spacing(1.5),
   },
+  forgotPassword: {
+    alignSelf: 'flex-start',
+  },
   signUp: {
     alignSelf: 'flex-end',
   },
