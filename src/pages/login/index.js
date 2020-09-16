@@ -65,7 +65,7 @@ const Login = () => {
       paddingX="1.2rem"
       className={classes.box}
     >
-      <form onSubmit={handleSubmit} noValidate>
+      <form className={classes.form} onSubmit={handleSubmit} noValidate>
         <Paper elevation={2} className={classes.paper}>
           <img
             className={classes.logo}
@@ -161,7 +161,7 @@ const Login = () => {
               />
             )}
           </Button>
-          <Typography className={classes.signUp} variant="subtitle2">
+          <Typography className={classes.signUp} variant="caption">
             Ainda não tem uma conta?{' '}
             <Link component={RouterLink} to="/signup">
               Cadastre-se!

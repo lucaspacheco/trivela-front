@@ -4,6 +4,10 @@ export default makeStyles((theme) => ({
   box: {
     backgroundColor: theme.palette.grey[50],
   },
+  form: {
+    maxWidth: '400px',
+    width: '100%',
+  },
   paper: {
     display: 'flex',
     flexDirection: 'column',
@@ -27,5 +31,8 @@ export default makeStyles((theme) => ({
   mutationErrorMessage: {
     alignSelf: 'flex-start',
     marginTop: theme.spacing(1.5),
+  },
+  signUp: {
+    alignSelf: 'flex-end',
   },
 }));
