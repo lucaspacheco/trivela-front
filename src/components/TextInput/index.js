@@ -18,6 +18,8 @@ const TextInput = ({
   className,
   fullWidth,
   error,
+  inputComponent,
+  inputProps,
   label,
   margin,
   name,
@@ -47,6 +49,8 @@ const TextInput = ({
       <InputComponent
         autoComplete={autoComplete}
         error={!!error}
+        inputComponent={inputComponent}
+        inputProps={inputProps}
         label={label}
         name={name}
         onChange={onChange}
@@ -67,13 +71,21 @@ TextInput.propTypes = {
   className: PropTypes.string,
   fullWidth: PropTypes.bool,
   error: PropTypes.string,
+  inputComponent: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.oneOf([undefined]),
+  ]),
+  inputProps: PropTypes.shape({}),
   label: PropTypes.string,
   margin: PropTypes.oneOf(['dense', 'none', 'normal']),
   name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  startAdornment: PropTypes.element,
+  startAdornment: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.oneOf([undefined]),
+  ]),
   type: PropTypes.string,
   value: PropTypes.any.isRequired,
   variant: PropTypes.oneOf(['outlined']),
@@ -84,12 +96,14 @@ TextInput.defaultProps = {
   className: '',
   fullWidth: false,
   error: '',
+  inputComponent: undefined,
+  inputProps: undefined,
   label: '',
   margin: 'dense',
   name: '',
   placeholder: '',
   required: false,
-  startAdornment: <></>,
+  startAdornment: undefined,
   type: 'text',
   variant: 'outlined',
 };
