@@ -25,6 +25,7 @@ import TextInput from 'components/TextInput';
 import { isValidCPF } from 'utils/helpers';
 import { validationMessages } from 'utils/consts';
 import api from 'services/api';
+import AutoComplete from 'pages/signup/AutoComplete';
 import useStyles from './styles';
 
 const signInSchema = Yup.object().shape({
@@ -32,6 +33,7 @@ const signInSchema = Yup.object().shape({
   cpf: Yup.string()
     .required(validationMessages.required)
     .test('cpf-valid', 'CPF inválido', (value) => isValidCPF(value)),
+  cartolaTeam: Yup.object().nullable().required(validationMessages.required),
   cellPhone: Yup.string()
     .required(validationMessages.required)
     .matches(/\(\d{2}\)\s\d{4,5}-\d{4}/g, 'Celular inválido'),
@@ -74,6 +76,7 @@ const Signup = () => {
     initialValues: {
       name: '',
       cpf: '',
+      cartolaTeam: null,
       cellPhone: '',
       email: '',
       confirmEmail: '',
@@ -86,6 +89,8 @@ const Signup = () => {
       signUp({ ...formValues });
     },
   });
+
+  React.useEffect(() => console.log(errors), [errors]);
 
   const handleChange = ({ target: { name, value } }) =>
     setFieldValue(name, value);
@@ -144,6 +149,12 @@ const Signup = () => {
             value={values.cpf}
             fullWidth
             required
+          />
+
+          <AutoComplete
+            className={classes.input}
+            error={errors.cartolaTeam}
+            onOptionChange={(option) => setFieldValue('cartolaTeam', option)}
           />
 
           <TextInput

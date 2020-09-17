@@ -14,5 +14,6 @@ module.exports = {
   // Mockoon Proxy
   proxy: {
     '/api': 'http://0.0.0.0:7001/',
+    '/cartola': 'https://api.cartolafc.globo.com/times',
   },
 };

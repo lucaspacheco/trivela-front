@@ -18,7 +18,7 @@ export default makeStyles((theme) => ({
     width: '100%',
   },
   input: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(3),
   },
   button: {
     margin: `${theme.spacing(2)}px 0 ${theme.spacing(0.5)}px`,
