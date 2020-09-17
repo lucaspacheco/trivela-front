@@ -2,28 +2,32 @@ import React from 'react';
 import {
   Box,
   Paper,
-  TextField,
   Button,
   Typography,
   Link,
-  InputAdornment,
   CircularProgress,
 } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import {
+  EmailOutlined as EmailOutlinedIcon,
+  LockOutlined as LockOutlinedIcon,
+} from '@material-ui/icons';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import useAppStore from 'components/App/store';
+import TextInput from 'components/TextInput';
 import api from 'services/api';
 import logo from 'assets/logo.png';
+import { validationMessages } from 'utils/consts';
 import useStyles from './styles';
 
 const signInSchema = Yup.object().shape({
-  email: Yup.string().email('E-mail inválido').required('Campo obrigatório'),
-  password: Yup.string().required('Campo obrigatório'),
+  email: Yup.string()
+    .email('E-mail inválido')
+    .required(validationMessages.required),
+  password: Yup.string().required(validationMessages.required),
 });
 
 const Login = () => {
@@ -72,71 +76,38 @@ const Login = () => {
             src={logo}
             alt="Escudo de time de futebol escrito Trivela e embaixo Smart Club"
           />
-          <TextField
-            name="email"
-            label="E-mail"
-            type="email"
-            variant="outlined"
-            placeholder="Digite seu e-mail"
-            margin="dense"
-            autoComplete="email"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailOutlinedIcon
-                    color={errors.email ? 'error' : 'inherit'}
-                  />
-                </InputAdornment>
-              ),
-            }}
-            value={values.email}
-            onChange={handleChange}
-            error={!!errors.email}
-            fullWidth
-            required
-          />
-          {errors.email && (
-            <Typography
-              variant="caption"
-              className={classes.errorMessage}
-              color="error"
-            >
-              {errors.email}
-            </Typography>
-          )}
 
-          <TextField
-            name="password"
-            label="Senha"
-            type="password"
-            variant="outlined"
-            placeholder="Digite sua senha"
-            margin="dense"
-            autoComplete="current-password"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LockOutlinedIcon
-                    color={errors.password ? 'error' : 'inherit'}
-                  />
-                </InputAdornment>
-              ),
-            }}
-            value={values.password}
+          <TextInput
+            autoComplete="email"
+            error={errors.email}
+            label="E-mail"
+            name="email"
             onChange={handleChange}
-            error={!!errors.password}
+            placeholder="Digite seu e-mail"
+            startAdornment={
+              <EmailOutlinedIcon color={errors.email ? 'error' : 'inherit'} />
+            }
+            variant="outlined"
+            value={values.email}
             fullWidth
             required
           />
-          {errors.password && (
-            <Typography
-              variant="caption"
-              className={classes.errorMessage}
-              color="error"
-            >
-              {errors.password}
-            </Typography>
-          )}
+
+          <TextInput
+            error={errors.password}
+            label="Senha"
+            name="password"
+            onChange={handleChange}
+            placeholder="Digite sua senha"
+            startAdornment={
+              <LockOutlinedIcon color={errors.password ? 'error' : 'inherit'} />
+            }
+            variant="outlined"
+            value={values.password}
+            type="password"
+            fullWidth
+            required
+          />
 
           <Typography className={classes.forgotPassword} variant="caption">
             <Link component={RouterLink} to="/login">
@@ -167,6 +138,7 @@ const Login = () => {
               />
             )}
           </Button>
+
           <Typography className={classes.signUp} variant="caption">
             Ainda não tem uma conta?{' '}
             <Link component={RouterLink} to="/signup">
