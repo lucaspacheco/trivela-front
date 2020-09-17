@@ -220,7 +220,7 @@ const Signup = () => {
             margin="dense"
             name="password"
             onChange={handleChange}
-            label="Nome"
+            label="Senha"
             placeholder="Digite sua senha"
             startAdornment={
               <LockOutlinedIcon color={errors.password ? 'error' : 'inherit'} />
@@ -239,7 +239,7 @@ const Signup = () => {
             margin="dense"
             name="confirmPassword"
             onChange={handleChange}
-            label="Nome"
+            label="Confirme a senha"
             placeholder="Confirme sua senha"
             startAdornment={
               <LockOutlinedIcon
