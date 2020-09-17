@@ -32,7 +32,7 @@ const signInSchema = Yup.object().shape({
 
 const Login = () => {
   const classes = useStyles();
-  const setToken = useAppStore((state) => state.setToken);
+  const setUserInfo = useAppStore((state) => state.setUserInfo);
   const history = useHistory();
 
   const [
@@ -41,9 +41,9 @@ const Login = () => {
   ] = useMutation(
     ({ email, password }) => api.post('/login', { email, password }),
     {
-      onSuccess: ({ data: { token } }) => {
+      onSuccess: ({ data }) => {
         history.push('/');
-        setToken(token);
+        setUserInfo(data);
       },
     },
   );

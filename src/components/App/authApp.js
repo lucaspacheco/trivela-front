@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import useStore from './store';
 
 const Component = () => {
-  const setToken = useStore((state) => state.setToken);
+  const setUserInfo = useStore((state) => state.setUserInfo);
+  const userInfo = useStore((state) => state.userInfo);
 
   return (
     <>
-      <h1>Home</h1>
-      <button onClick={() => setToken(null)}>Logout</button>
+      <h1>Olá {userInfo.userName}</h1>
+      <button onClick={() => setUserInfo({})}>Logout</button>
     </>
   );
 };

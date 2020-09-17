@@ -6,7 +6,7 @@ import AuthApp from 'components/App/authApp';
 import useStore from './store';
 
 const App = () => {
-  const token = useStore((state) => state.token);
+  const token = useStore((state) => state.userInfo.token);
 
   return (
     <MuiThemeProvider theme={theme}>

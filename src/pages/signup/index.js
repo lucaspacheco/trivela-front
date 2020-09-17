@@ -60,15 +60,15 @@ const signInSchema = Yup.object().shape({
 const Signup = () => {
   const classes = useStyles();
   const history = useHistory();
-  const setToken = useAppStore((state) => state.setToken);
+  const setUserInfo = useAppStore((state) => state.setUserInfo);
 
   const [
     signUp,
     { isLoading, reset: resetMutation, error: mutationError },
   ] = useMutation((formValues) => api.post('/signup', { ...formValues }), {
-    onSuccess: ({ data: { token } }) => {
+    onSuccess: ({ data }) => {
       history.push('/');
-      setToken(token);
+      setUserInfo(data);
     },
   });
 
