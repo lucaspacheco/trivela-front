@@ -78,6 +78,7 @@ const Login = () => {
           />
 
           <TextInput
+            className={classes.input}
             autoComplete="email"
             error={errors.email}
             label="E-mail"
@@ -94,6 +95,7 @@ const Login = () => {
           />
 
           <TextInput
+            className={classes.input}
             error={errors.password}
             label="Senha"
             name="password"
