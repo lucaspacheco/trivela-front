@@ -90,8 +90,6 @@ const Signup = () => {
     },
   });
 
-  React.useEffect(() => console.log(errors), [errors]);
-
   const handleChange = ({ target: { name, value } }) =>
     setFieldValue(name, value);
 

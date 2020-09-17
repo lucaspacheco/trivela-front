@@ -6,6 +6,8 @@ const Component = () => {
   const setUserInfo = useStore((state) => state.setUserInfo);
   const userInfo = useStore((state) => state.userInfo);
 
+  console.log(userInfo, 'info');
+
   return (
     <>
       <h1>Olá {userInfo.userName}</h1>
