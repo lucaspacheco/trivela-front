@@ -2,15 +2,10 @@ import React from 'react';
 import {
   Box,
   Paper,
-  TextField,
-  OutlinedInput,
   Button,
   Typography,
   Link,
-  InputAdornment,
   CircularProgress,
-  FormControl,
-  InputLabel,
 } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
@@ -26,6 +21,7 @@ import { IMaskInput } from 'react-imask';
 import * as Yup from 'yup';
 
 import useAppStore from 'components/App/store';
+import TextInput from 'components/TextInput';
 import { isValidCPF } from 'utils/helpers';
 import { validationMessages } from 'utils/consts';
 import api from 'services/api';
@@ -106,262 +102,156 @@ const Signup = () => {
     >
       <form className={classes.form} onSubmit={handleSubmit} noValidate>
         <Paper elevation={2} className={classes.paper}>
-          <TextField
-            name="name"
-            className={classes.input}
-            label="Nome"
-            type="email"
-            variant="outlined"
-            placeholder="Digite seu nome"
-            margin="dense"
+          <TextInput
             autoComplete="name"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <PersonOutlineIcon
-                    color={errors.name ? 'error' : 'inherit'}
-                  />
-                </InputAdornment>
-              ),
-            }}
+            className={classes.input}
+            error={errors.name}
+            margin="dense"
+            name="name"
+            onChange={handleChange}
+            label="Nome"
+            placeholder="Digite seu nome"
+            startAdornment={
+              <PersonOutlineIcon color={errors.name ? 'error' : 'inherit'} />
+            }
+            variant="outlined"
             value={values.name}
-            onChange={handleChange}
-            error={!!errors.name}
             fullWidth
             required
           />
-          {errors.name && (
-            <Typography
-              variant="caption"
-              className={classes.errorMessage}
-              color="error"
-            >
-              {errors.name}
-            </Typography>
-          )}
 
-          <FormControl
+          <TextInput
+            autoComplete="cpf"
             className={classes.input}
+            error={errors.cpf}
+            inputComponent={IMaskInput}
+            inputProps={{
+              mask: '000.000.000-00',
+              onAccept: (value) =>
+                handleChange({ target: { name: 'cpf', value } }),
+            }}
+            margin="dense"
+            name="cpf"
+            onChange={handleChange}
+            label="CPF"
+            placeholder="Digite seu CPF"
+            startAdornment={
+              <BrandingWatermarkOutlinedIcon
+                color={errors.cpf ? 'error' : 'inherit'}
+              />
+            }
+            variant="outlined"
+            value={values.cpf}
             fullWidth
             required
-            margin="dense"
-            variant="outlined"
-          >
-            <InputLabel htmlFor="cpf" shrink>
-              CPF
-            </InputLabel>
-            <OutlinedInput
-              name="cpf"
-              type="text"
-              inputComponent={IMaskInput}
-              labelWidth={60}
-              placeholder="Digite seu CPF"
-              startAdornment={
-                <InputAdornment position="start">
-                  <BrandingWatermarkOutlinedIcon
-                    color={errors.cpf ? 'error' : 'inherit'}
-                  />
-                </InputAdornment>
-              }
-              inputProps={{
-                mask: '000.000.000-00',
-                onAccept: (value) =>
-                  handleChange({ target: { name: 'cpf', value } }),
-              }}
-              value={values.cpf}
-              error={!!errors.cpf}
-            />
-          </FormControl>
-          {errors.cpf && (
-            <Typography
-              variant="caption"
-              className={classes.errorMessage}
-              color="error"
-            >
-              {errors.cpf}
-            </Typography>
-          )}
+          />
 
-          <FormControl
+          <TextInput
+            autoComplete="cellPhone"
             className={classes.input}
+            error={errors.cellPhone}
+            inputComponent={IMaskInput}
+            inputProps={{
+              mask:
+                values.cellPhone.length > 14
+                  ? '(00) 00000-0000'
+                  : '(00) 0000-0000[0]',
+              onAccept: (value) =>
+                handleChange({ target: { name: 'cellPhone', value } }),
+            }}
+            margin="dense"
+            name="cellPhone"
+            onChange={handleChange}
+            label="Celular"
+            placeholder="Digite seu celular"
+            startAdornment={
+              <PhoneIphoneIcon color={errors.cellPhone ? 'error' : 'inherit'} />
+            }
+            variant="outlined"
+            value={values.cellPhone}
             fullWidth
             required
-            margin="dense"
-            variant="outlined"
-          >
-            <InputLabel htmlFor="cellPhone" shrink>
-              Celular
-            </InputLabel>
-            <OutlinedInput
-              name="cellPhone"
-              inputComponent={IMaskInput}
-              labelWidth={60}
-              placeholder="Digite seu celular"
-              startAdornment={
-                <InputAdornment position="start">
-                  <PhoneIphoneIcon
-                    color={errors.cellPhone ? 'error' : 'inherit'}
-                  />
-                </InputAdornment>
-              }
-              inputProps={{
-                mask:
-                  values.cellPhone.length > 14
-                    ? '(00) 00000-0000'
-                    : '(00) 0000-0000[0]',
-                onAccept: (value) =>
-                  handleChange({ target: { name: 'cellPhone', value } }),
-              }}
-              onChange={handleChange}
-              value={values.cellPhone}
-              error={!!errors.cellPhone}
-            />
-          </FormControl>
-          {errors.cellPhone && (
-            <Typography
-              variant="caption"
-              className={classes.errorMessage}
-              color="error"
-            >
-              {errors.cellPhone}
-            </Typography>
-          )}
+          />
 
-          <TextField
+          <TextInput
+            autoComplete="email"
+            className={classes.input}
+            error={errors.name}
+            margin="dense"
             name="email"
-            className={classes.input}
+            onChange={handleChange}
             label="E-mail"
-            type="email"
-            variant="outlined"
             placeholder="Digite seu e-mail"
-            margin="dense"
-            autoComplete="email"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailOutlinedIcon
-                    color={errors.email ? 'error' : 'inherit'}
-                  />
-                </InputAdornment>
-              ),
-            }}
-            value={values.email}
-            onChange={handleChange}
-            error={!!errors.email}
-            fullWidth
-            required
-          />
-          {errors.email && (
-            <Typography
-              variant="caption"
-              className={classes.errorMessage}
-              color="error"
-            >
-              {errors.email}
-            </Typography>
-          )}
-
-          <TextField
-            name="confirmEmail"
-            className={classes.input}
-            label="Confirme o e-mail"
+            startAdornment={
+              <EmailOutlinedIcon color={errors.email ? 'error' : 'inherit'} />
+            }
             type="email"
             variant="outlined"
+            value={values.email}
+            fullWidth
+            required
+          />
+
+          <TextInput
+            autoComplete="confirmEmail"
+            className={classes.input}
+            error={errors.confirmEmail}
+            margin="dense"
+            name="confirmEmail"
+            onChange={handleChange}
+            label="Confirme o e-mail"
             placeholder="Confirme seu e-mail"
-            margin="dense"
-            autoComplete="email"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailOutlinedIcon
-                    color={errors.confirmEmail ? 'error' : 'inherit'}
-                  />
-                </InputAdornment>
-              ),
-            }}
+            startAdornment={
+              <EmailOutlinedIcon
+                color={errors.confirmEmail ? 'error' : 'inherit'}
+              />
+            }
+            type="email"
+            variant="outlined"
             value={values.confirmEmail}
-            onChange={handleChange}
-            error={!!errors.confirmEmail}
             fullWidth
             required
           />
-          {errors.confirmEmail && (
-            <Typography
-              variant="caption"
-              className={classes.errorMessage}
-              color="error"
-            >
-              {errors.confirmEmail}
-            </Typography>
-          )}
 
-          <TextField
+          <TextInput
+            autoComplete="password"
+            className={classes.input}
+            error={errors.password}
+            margin="dense"
             name="password"
-            className={classes.input}
-            label="Senha"
-            type="password"
-            variant="outlined"
+            onChange={handleChange}
+            label="Nome"
             placeholder="Digite sua senha"
-            margin="dense"
-            autoComplete="current-password"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LockOutlinedIcon
-                    color={errors.password ? 'error' : 'inherit'}
-                  />
-                </InputAdornment>
-              ),
-            }}
-            value={values.password}
-            onChange={handleChange}
-            error={!!errors.password}
-            fullWidth
-            required
-          />
-          {errors.password && (
-            <Typography
-              variant="caption"
-              className={classes.errorMessage}
-              color="error"
-            >
-              {errors.password}
-            </Typography>
-          )}
-
-          <TextField
-            name="confirmPassword"
-            className={classes.input}
-            label="Confirme a senha"
+            startAdornment={
+              <LockOutlinedIcon color={errors.password ? 'error' : 'inherit'} />
+            }
             type="password"
             variant="outlined"
-            placeholder="Confirme sua senha"
-            margin="dense"
-            autoComplete="current-password"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LockOutlinedIcon
-                    color={errors.confirmPassword ? 'error' : 'inherit'}
-                  />
-                </InputAdornment>
-              ),
-            }}
-            value={values.confirmPassword}
-            onChange={handleChange}
-            error={!!errors.confirmPassword}
+            value={values.password}
             fullWidth
             required
           />
-          {errors.confirmPassword && (
-            <Typography
-              variant="caption"
-              className={classes.errorMessage}
-              color="error"
-            >
-              {errors.confirmPassword}
-            </Typography>
-          )}
+
+          <TextInput
+            autoComplete="confirmPassword"
+            className={classes.input}
+            error={errors.confirmPassword}
+            margin="dense"
+            name="confirmPassword"
+            onChange={handleChange}
+            label="Nome"
+            placeholder="Confirme sua senha"
+            startAdornment={
+              <LockOutlinedIcon
+                color={errors.confirmPassword ? 'error' : 'inherit'}
+              />
+            }
+            type="password"
+            variant="outlined"
+            value={values.confirmPassword}
+            fullWidth
+            required
+          />
 
           {mutationError?.message && (
             <Typography color="error" className={classes.mutationErrorMessage}>
