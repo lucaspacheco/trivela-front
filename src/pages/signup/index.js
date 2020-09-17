@@ -27,28 +27,31 @@ import * as Yup from 'yup';
 
 import useAppStore from 'components/App/store';
 import { isValidCPF } from 'utils/helpers';
+import { validationMessages } from 'utils/consts';
 import api from 'services/api';
 import useStyles from './styles';
 
 const signInSchema = Yup.object().shape({
-  name: Yup.string().required('Campo obrigatório'),
+  name: Yup.string().required(validationMessages.required),
   cpf: Yup.string()
-    .required('Campo obrigatório')
+    .required(validationMessages.required)
     .test('cpf-valid', 'CPF inválido', (value) => isValidCPF(value)),
   cellPhone: Yup.string()
-    .required('Campo obrigatório')
+    .required(validationMessages.required)
     .matches(/\(\d{2}\)\s\d{4,5}-\d{4}/g, 'Celular inválido'),
-  email: Yup.string().email('E-mail inválido').required('Campo obrigatório'),
+  email: Yup.string()
+    .email('E-mail inválido')
+    .required(validationMessages.required),
   confirmEmail: Yup.string()
-    .required('Campo obrigatório')
+    .required(validationMessages.required)
     .test('emails-match', 'Os e-mails não correspondem', function validate(
       value,
     ) {
       return this.parent.email === value;
     }),
-  password: Yup.string().required('Campo obrigatório'),
+  password: Yup.string().required(validationMessages.required),
   confirmPassword: Yup.string()
-    .required('Campo obrigatório')
+    .required(validationMessages.required)
     .test('passwords-match', 'As senhas não correspondem', function validate(
       value,
     ) {
