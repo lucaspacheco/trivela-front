@@ -38,6 +38,31 @@ export default responsiveFontSizes(
           backgroundColor: '#EEEEEE',
         },
       },
+      MuiSnackbarContent: {
+        root: {
+          display: 'flex',
+          flexWrap: 'no-wrap',
+        },
+      },
+      MuiAlert: {
+        icon: {
+          alignItems: 'center',
+          '& > svg': {
+            color: colors.common.white,
+            fill: colors.common.white,
+          },
+        },
+        action: {
+          '& > button > span > svg': {
+            color: colors.common.white,
+            fill: colors.common.white,
+          },
+        },
+        message: {
+          display: 'flex',
+          alignItems: 'center',
+        },
+      },
     },
   }),
 );

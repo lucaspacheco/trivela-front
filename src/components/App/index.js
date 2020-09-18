@@ -2,11 +2,12 @@ import React, { useEffect, useLayoutEffect } from 'react';
 import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import { useMutation } from 'react-query';
 
-import theme from 'styles/theme';
 import UnauthApp from 'components/App/unauthApp';
 import AuthApp from 'components/App/authApp';
-import api from 'services/api';
+import Notification from 'components/Notification';
 import FullSpinner from 'components/FullSpinner';
+import theme from 'styles/theme';
+import api from 'services/api';
 import useStore from './store';
 
 const App = () => {
@@ -57,6 +58,7 @@ const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
+      <Notification />
       {token ? <AuthApp /> : <UnauthApp />}
     </MuiThemeProvider>
   );
