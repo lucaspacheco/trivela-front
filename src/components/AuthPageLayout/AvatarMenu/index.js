@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    },
   },
   icon: {
     marginRight: theme.spacing(1),
@@ -43,11 +46,13 @@ const AvatarMenu = () => {
   const classes = useStyles();
   return (
     <>
-      <IconButton className={classes.button} onClick={handleOpenMenu}>
-        <Avatar className={classes.avatar}>
-          {userInfo?.userName?.substring(0, 1)}
-        </Avatar>
-      </IconButton>
+      <Avatar
+        className={classes.avatar}
+        component={IconButton}
+        onClick={handleOpenMenu}
+      >
+        {userInfo?.userName?.substring(0, 1)}
+      </Avatar>
       <Menu
         getContentAnchorEl={null}
         anchorEl={anchorEl}
