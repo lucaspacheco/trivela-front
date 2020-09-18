@@ -19,8 +19,9 @@ import * as Yup from 'yup';
 import useAppStore from 'components/App/store';
 import TextInput from 'components/TextInput';
 import api from 'services/api';
-import logo from 'assets/logo.png';
+import logo from 'assets/logo.svg';
 import { validationMessages } from 'utils/consts';
+import RenderImg from 'components/RenderImg';
 import useStyles from './styles';
 
 const signInSchema = Yup.object().shape({
@@ -71,10 +72,10 @@ const Login = () => {
     >
       <form className={classes.form} onSubmit={handleSubmit} noValidate>
         <Paper elevation={2} className={classes.paper}>
-          <img
+          <RenderImg
             className={classes.logo}
             src={logo}
-            alt="Escudo de time de futebol escrito Trivela e embaixo Smart Club"
+            al="Escudo de time de futebol escrito Trivela e embaixo Smart Club"
           />
 
           <TextInput
