@@ -18,6 +18,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Tooltip,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -87,9 +88,11 @@ const DrawerMenu = () => {
 
   return (
     <>
-      <IconButton onClick={handleOpenDrawer}>
-        <MenuIcon />
-      </IconButton>
+      <Tooltip title="Menu principal" disableFocusListener>
+        <IconButton onClick={handleOpenDrawer}>
+          <MenuIcon />
+        </IconButton>
+      </Tooltip>
       <SwipeableDrawer
         anchor="left"
         open={!!anchorEl}
