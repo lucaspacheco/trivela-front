@@ -13,11 +13,6 @@ export default responsiveFontSizes(
       htmlFontSize: 10,
     },
     overrides: {
-      MuiSvgIcon: {
-        root: {
-          color: colors.grey[600],
-        },
-      },
       MuiCssBaseline: {
         '@global': {
           html: {
@@ -30,6 +25,17 @@ export default responsiveFontSizes(
             margin: 0,
             padding: 0,
           },
+        },
+      },
+      MuiSvgIcon: {
+        root: {
+          color: colors.grey[600],
+        },
+      },
+      MuiAppBar: {
+        colorPrimary: {
+          color: colors.common.black,
+          backgroundColor: '#EEEEEE',
         },
       },
     },
