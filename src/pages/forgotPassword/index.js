@@ -7,57 +7,50 @@ import {
   Link,
   CircularProgress,
 } from '@material-ui/core';
-import { Link as RouterLink, useHistory } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import {
-  EmailOutlined as EmailOutlinedIcon,
-  LockOutlined as LockOutlinedIcon,
-} from '@material-ui/icons';
+import { EmailOutlined as EmailOutlinedIcon } from '@material-ui/icons';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import useAppStore from 'components/App/store';
 import TextInput from 'components/TextInput';
 import api from 'services/api';
 import logo from 'assets/logo.svg';
 import { validationMessages } from 'utils/consts';
 import RenderImg from 'components/RenderImg';
+import useNotification from 'components/Notification/store';
 import useStyles from './styles';
 
 const signInSchema = Yup.object().shape({
   email: Yup.string()
     .email('E-mail inválido')
     .required(validationMessages.required),
-  password: Yup.string().required(validationMessages.required),
 });
 
-const Login = () => {
+const ForgotPassword = () => {
   const classes = useStyles();
-  const setUserInfo = useAppStore((state) => state.setUserInfo);
-  const history = useHistory();
+  const showNotification = useNotification((state) => state.showNotification);
 
   const [
-    login,
+    recoverPassword,
     { isLoading, reset: resetMutation, error: mutationError },
-  ] = useMutation(
-    ({ email, password }) => api.post('/login', { email, password }),
-    {
-      onSuccess: ({ data }) => {
-        history.push('/');
-        setUserInfo(data);
-      },
+  ] = useMutation(({ email }) => api.post('/forgot-password', { email }), {
+    onSuccess: () => {
+      showNotification({
+        message: 'E-mail enviado! Não esqueça de verificar sua caixa de spam.',
+        type: 'success',
+      });
     },
-  );
+  });
 
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
       email: '',
-      password: '',
     },
     validationSchema: signInSchema,
     validateOnChange: false,
     onSubmit: (formValues) => {
-      login({ ...formValues });
+      recoverPassword({ ...formValues });
     },
   });
 
@@ -78,6 +71,14 @@ const Login = () => {
             al="Escudo de time de futebol escrito Trivela e embaixo Smart Club"
           />
 
+          <Typography variant="h5" paragraph>
+            Esqueceu sua senha?
+          </Typography>
+          <Typography variant="body2" paragraph align="center">
+            Informe seu e-mail e vamos te enviar um link para redefinição de
+            senha.
+          </Typography>
+
           <TextInput
             className={classes.input}
             autoComplete="email"
@@ -95,29 +96,6 @@ const Login = () => {
             required
           />
 
-          <TextInput
-            className={classes.input}
-            error={errors.password}
-            label="Senha"
-            name="password"
-            onChange={handleChange}
-            placeholder="Digite sua senha"
-            startAdornment={
-              <LockOutlinedIcon color={errors.password ? 'error' : 'inherit'} />
-            }
-            variant="outlined"
-            value={values.password}
-            type="password"
-            fullWidth
-            required
-          />
-
-          <Typography className={classes.forgotPassword} variant="caption">
-            <Link component={RouterLink} to="/forgot-password">
-              Esqueci minha senha
-            </Link>
-          </Typography>
-
           {mutationError?.message && (
             <Typography color="error" className={classes.mutationErrorMessage}>
               {mutationError.message}
@@ -133,7 +111,7 @@ const Login = () => {
             fullWidth
             onClick={mutationError ? resetMutation : null}
           >
-            Entrar
+            Recuperar Senha
             {isLoading && (
               <CircularProgress
                 size="3.2rem"
@@ -142,10 +120,10 @@ const Login = () => {
             )}
           </Button>
 
-          <Typography className={classes.signUp} variant="caption">
-            Ainda não tem uma conta?{' '}
-            <Link component={RouterLink} to="/signup">
-              Cadastre-se!
+          <Typography className={classes.forgotPassword} variant="caption">
+            Lembrou a senha?{' '}
+            <Link component={RouterLink} to="/login">
+              Faça login!
             </Link>
           </Typography>
         </Paper>
@@ -154,4 +132,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
