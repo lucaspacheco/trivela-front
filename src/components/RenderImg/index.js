@@ -20,13 +20,15 @@ RenderImg.propTypes = {
   alt: PropTypes.string,
   className: PropTypes.string,
   src: PropTypes.string.isRequired,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 RenderImg.defaultProps = {
   alt: '',
   className: '',
+  width: '100%',
+  height: '100%',
 };
 
 export default RenderImg;
