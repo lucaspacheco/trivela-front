@@ -43,8 +43,8 @@ const Login = () => {
     ({ email, password }) => api.post('/login', { email, password }),
     {
       onSuccess: ({ data }) => {
-        history.push('/');
         storeLogin(data);
+        history.push('/');
       },
     },
   );
