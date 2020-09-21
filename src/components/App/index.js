@@ -1,6 +1,7 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import { useMutation } from 'react-query';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import UnauthApp from 'components/App/unauthApp';
 import AuthApp from 'components/App/authApp';
@@ -28,29 +29,8 @@ const App = () => {
     },
   );
 
-  useLayoutEffect(() => {
-    if (token) checkToken(token);
-  }, []);
-
   useEffect(() => {
-    api.interceptors.response.use(undefined, (error) => {
-      if (error.response.status === 401) {
-        setUserInfo({});
-      }
-      // eslint-disable-next-line no-param-reassign
-      error.originalMessage = error.message;
-      Object.defineProperty(error, 'message', {
-        get() {
-          if (!error.response) {
-            return error.originalMessage;
-          }
-          return (
-            error.response.data.errorMessage || 'Ocorreu um erro inesperado.'
-          );
-        },
-      });
-      return Promise.reject(error);
-    });
+    if (token) checkToken();
   }, []);
 
   if (isLoading) return <FullSpinner />;
@@ -59,7 +39,10 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Notification />
-      {token ? <AuthApp /> : <UnauthApp />}
+
+      <Router>
+        <Route component={token ? AuthApp : UnauthApp} />
+      </Router>
     </MuiThemeProvider>
   );
 };
