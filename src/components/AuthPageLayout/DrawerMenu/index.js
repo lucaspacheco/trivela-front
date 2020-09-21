@@ -32,9 +32,9 @@ const DrawerMenu = () => {
 
   const DrawerItems = () => (
     <List className={classes.list}>
-      {menuItems.map(({ id, component, title, icon: Icon, divider }) => (
+      {menuItems.map(({ id, component, to, title, icon: Icon, divider }) => (
         <React.Fragment key={id}>
-          <ListItem button component={component}>
+          <ListItem button component={component} to={to}>
             <ListItemIcon>
               <Icon />
             </ListItemIcon>
