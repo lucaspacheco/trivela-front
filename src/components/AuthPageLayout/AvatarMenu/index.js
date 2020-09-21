@@ -58,7 +58,7 @@ const AvatarMenu = () => {
         component={IconButton}
         onClick={handleOpenMenu}
       >
-        {userInfo?.userName?.substring(0, 1)}
+        {userInfo?.name?.substring(0, 1)}
       </Avatar>
       <Menu
         getContentAnchorEl={null}
