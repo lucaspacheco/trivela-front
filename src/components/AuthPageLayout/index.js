@@ -41,7 +41,7 @@ const AuthPageLayout = ({ children }) => {
 };
 
 AuthPageLayout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default AuthPageLayout;
