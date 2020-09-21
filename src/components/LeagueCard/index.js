@@ -31,7 +31,7 @@ const LeagueCard = ({ className, league }) => {
               variant="contained"
               color="primary"
             >
-              <Typography variant="h5">Parciais</Typography>
+              <Typography variant="body1">Parciais</Typography>
             </Button>
           </>
         ) : (
@@ -45,14 +45,14 @@ const LeagueCard = ({ className, league }) => {
               variant="contained"
               color="primary"
             >
-              <Typography variant="h5">Adicionar</Typography>
+              <Typography variant="body1">Adicionar</Typography>
               <AddIcon />
             </Button>
           </>
         )}
       </div>
       <div className={classes.priceWrapper}>
-        <Typography variant="h3">{formatMoney(league.price)}</Typography>
+        <Typography variant="h4">{formatMoney(league.price)}</Typography>
       </div>
     </div>
   );
