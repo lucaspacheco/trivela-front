@@ -18,6 +18,8 @@ export default [
   },
   {
     id: 2,
+    component: Link,
+    to: '/my-teams',
     title: 'Meus times',
     icon: SportsSoccerIcon,
   },
