@@ -16,6 +16,7 @@ const variantComponent = {
 const TextInput = ({
   autoComplete,
   className,
+  disabled,
   fullWidth,
   error,
   inputComponent,
@@ -36,6 +37,7 @@ const TextInput = ({
   return (
     <FormControl
       className={className}
+      disabled={disabled}
       fullWidth={fullWidth}
       margin={margin}
       required={required}
@@ -69,6 +71,7 @@ const TextInput = ({
 TextInput.propTypes = {
   autoComplete: PropTypes.string,
   className: PropTypes.string,
+  disabled: PropTypes.bool,
   fullWidth: PropTypes.bool,
   error: PropTypes.string,
   inputComponent: PropTypes.oneOfType([
@@ -94,6 +97,7 @@ TextInput.propTypes = {
 TextInput.defaultProps = {
   autoComplete: 'off',
   className: '',
+  disabled: false,
   fullWidth: false,
   error: '',
   inputComponent: undefined,
