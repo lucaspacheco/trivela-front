@@ -15,7 +15,7 @@ import MyTeamsPage from 'pages/myTeams';
 
 import theme from 'styles/theme';
 import api from 'services/api';
-import HistoryListener from './HistoryListener';
+import RedirectIfAuthenticated from './RedirectIfAuthenticated';
 import useAppStore from './store';
 
 const queryConfig = {
@@ -96,7 +96,7 @@ const App = () => {
         <Notifications />
 
         <Router>
-          <HistoryListener />
+          <RedirectIfAuthenticated />
           <PrivateRoute exact path="/" component={HomePage} />
           <PrivateRoute exact path="/profile" component={ProfilePage} />
           <PrivateRoute exact path="/my-teams" component={MyTeamsPage} />
