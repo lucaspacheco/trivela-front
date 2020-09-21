@@ -8,7 +8,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import {
-  Edit as EditIcon,
+  EditOutlined as EditIcon,
+  LockOutlined as LockIcon,
   PowerSettingsNew as PowerSettingsNewIcon,
 } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
@@ -74,9 +75,13 @@ const AvatarMenu = () => {
         }}
         onClose={handleCloseMenu}
       >
-        <MenuItem>
+        <MenuItem onClick={() => history.push('/profile')}>
           <EditIcon className={classes.icon} />
           <Typography variant="body1">Alterar dados</Typography>
+        </MenuItem>
+        <MenuItem>
+          <LockIcon className={classes.icon} />
+          <Typography variant="body1">Alterar senha</Typography>
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <PowerSettingsNewIcon className={classes.icon} />

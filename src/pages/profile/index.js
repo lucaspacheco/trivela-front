@@ -48,7 +48,6 @@ const Profile = () => {
       cellPhone: '',
       email: '',
       password: '',
-      confirmPassword: '',
     },
     validationSchema,
     validateOnChange: false,
@@ -178,34 +177,13 @@ const Profile = () => {
             name="password"
             onChange={handleChange}
             label="Senha"
-            placeholder="Digite sua senha"
+            placeholder="Digite sua senha atual"
             startAdornment={
               <LockOutlinedIcon color={errors.password ? 'error' : 'inherit'} />
             }
             type="password"
             variant="outlined"
             value={values.password}
-            fullWidth
-            required
-          />
-
-          <TextInput
-            autoComplete="confirmPassword"
-            className={classes.input}
-            error={errors.confirmPassword}
-            margin="dense"
-            name="confirmPassword"
-            onChange={handleChange}
-            label="Confirme a senha"
-            placeholder="Confirme sua senha"
-            startAdornment={
-              <LockOutlinedIcon
-                color={errors.confirmPassword ? 'error' : 'inherit'}
-              />
-            }
-            type="password"
-            variant="outlined"
-            value={values.confirmPassword}
             fullWidth
             required
           />

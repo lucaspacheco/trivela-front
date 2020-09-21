@@ -1,10 +1,6 @@
 import * as Yup from 'yup';
 
-import {
-  validationMessages,
-  passwordRegex,
-  cellPhoneRegex,
-} from 'utils/consts';
+import { validationMessages, cellPhoneRegex } from 'utils/consts';
 
 export default Yup.object().shape({
   name: Yup.string().required(validationMessages.required),
@@ -14,14 +10,5 @@ export default Yup.object().shape({
   email: Yup.string()
     .email(validationMessages.invalidField('E-mail'))
     .required(validationMessages.required),
-  password: Yup.string()
-    .required(validationMessages.required)
-    .matches(passwordRegex, validationMessages.passwordStrength),
-  confirmPassword: Yup.string()
-    .required(validationMessages.required)
-    .test('passwords-match', 'As senhas não correspondem', function validate(
-      value,
-    ) {
-      return this.parent.password === value;
-    }),
+  password: Yup.string().required(validationMessages.required),
 });
