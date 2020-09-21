@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles((theme) => ({
   cardWrapper: {
-    maxWidth: '32rem',
+    maxWidth: '40rem',
     width: '100%',
   },
   cardHeader: {
@@ -52,9 +52,9 @@ export default makeStyles((theme) => ({
   button: {
     borderRadius: theme.spacing(1.5),
     padding: `${theme.spacing(1)}px ${theme.spacing(3)}px`,
-    margin: `${theme.spacing(2)}px ${theme.spacing(4)}px 0`,
+    margin: `${theme.spacing(2)}px ${theme.spacing(6)}px 0`,
 
-    '& > span > h5': {
+    '& > span > p': {
       fontWeight: 'bold',
     },
 
@@ -75,7 +75,7 @@ export default makeStyles((theme) => ({
     borderBottomLeftRadius: theme.spacing(2),
     borderBottomRightRadius: theme.spacing(2),
 
-    '& > h3': {
+    '& > h4': {
       fontWeight: 'bold',
     },
   },
