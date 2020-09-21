@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import { useMutation } from 'react-query';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -12,8 +12,12 @@ import api from 'services/api';
 import useStore from './store';
 
 const App = () => {
-  const token = useStore((state) => state.userInfo.token);
-  const setUserInfo = useStore((state) => state.setUserInfo);
+  const {
+    userInfo: { token },
+    isAuthenticated,
+    login,
+    logout,
+  } = useStore();
 
   const [checkToken, { isLoading }] = useMutation(
     () =>
@@ -24,13 +28,15 @@ const App = () => {
       }),
     {
       // TODO: Snackbar
-      onError: () => setUserInfo({}),
-      onSuccess: ({ data }) => setUserInfo(data),
+      onError: () => logout(),
+      onSuccess: ({ data }) => login(data),
     },
   );
 
-  useEffect(() => {
-    if (token) checkToken();
+  useLayoutEffect(() => {
+    (async () => {
+      if (token) await checkToken();
+    })();
   }, []);
 
   if (isLoading) return <FullSpinner />;
@@ -41,7 +47,7 @@ const App = () => {
       <Notification />
 
       <Router>
-        <Route component={token ? AuthApp : UnauthApp} />
+          <Route component={isAuthenticated ? AuthApp : UnauthApp} />
       </Router>
     </MuiThemeProvider>
   );

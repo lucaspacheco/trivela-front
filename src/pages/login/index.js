@@ -33,7 +33,7 @@ const signInSchema = Yup.object().shape({
 
 const Login = () => {
   const classes = useStyles();
-  const setUserInfo = useAppStore((state) => state.setUserInfo);
+  const storeLogin = useAppStore((state) => state.login);
   const history = useHistory();
 
   const [
@@ -44,7 +44,7 @@ const Login = () => {
     {
       onSuccess: ({ data }) => {
         history.push('/');
-        setUserInfo(data);
+        storeLogin(data);
       },
     },
   );

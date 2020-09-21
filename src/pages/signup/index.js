@@ -30,7 +30,7 @@ import validationSchema from './validationSchema';
 const Signup = () => {
   const classes = useStyles();
   const history = useHistory();
-  const setUserInfo = useAppStore((state) => state.setUserInfo);
+  const login = useAppStore((state) => state.login);
 
   const [
     signUp,
@@ -38,7 +38,7 @@ const Signup = () => {
   ] = useMutation((formValues) => api.post('/signup', { ...formValues }), {
     onSuccess: ({ data }) => {
       history.push('/');
-      setUserInfo(data);
+      login(data);
     },
   });
 

@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AvatarMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const { userInfo, setUserInfo } = useAppStore();
+  const { userInfo, logout } = useAppStore();
   const history = useHistory();
 
   const handleOpenMenu = (event) => {
@@ -48,7 +48,7 @@ const AvatarMenu = () => {
 
   const handleLogout = () => {
     history.push('/');
-    setUserInfo({});
+    logout();
   };
 
   const classes = useStyles();

@@ -15,7 +15,7 @@ import useAppStore from './store';
 const AuthApp = () => {
   const {
     userInfo: { token },
-    setUserInfo,
+    logout,
   } = useAppStore();
   const history = useHistory();
   const notify = useNotify();
@@ -28,7 +28,7 @@ const AuthApp = () => {
           type: 'error',
           message: 'Sessão expirada, autentique-se novamente',
         });
-        setUserInfo({});
+        logout();
       }
       // eslint-disable-next-line no-param-reassign
       error.originalMessage = error.message;
