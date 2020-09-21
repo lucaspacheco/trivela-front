@@ -21,7 +21,7 @@ const AuthApp = () => {
   const notify = useNotify();
 
   useEffect(() => {
-    api.interceptors.response.use(undefined, (error) => {
+    const interceptor = api.interceptors.response.use(undefined, (error) => {
       if (error.response.status === 401) {
         history.push('/');
         notify({
@@ -44,6 +44,10 @@ const AuthApp = () => {
       });
       return Promise.reject(error);
     });
+
+    return () => {
+      api.interceptors.response.eject(interceptor);
+    };
   }, []);
 
   useEffect(() => {
