@@ -78,3 +78,37 @@ export const isValidCPF = (CPF = '') => {
   if (rest !== Number(internalCPF.substring(10, 11))) return false;
   return true;
 };
+
+/**
+ * Format money to BRL
+ *
+ * @param {number} value Raw value
+ * @returns {string}
+ */
+export const formatMoney = (value) => {
+  return String(
+    new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(value),
+  ).replace(String.fromCharCode(160), String.fromCharCode(32));
+};
+
+/**
+ * Turns a string date into a formatted String.
+ *
+ * @param {string} date The date  (e.g.: 1987-05-31T03:00:00.000Z) to be turned into a formatted string
+ * @returns {string}
+ */
+export const dateToString = (date) => {
+  if (!date) return '';
+  const jsDate = new Date(date);
+
+  const day = jsDate.getDate();
+  const month = jsDate.getMonth();
+  const year = jsDate.getFullYear();
+  const hour = jsDate.getHours();
+  const minutes = jsDate.getMinutes();
+
+  return `${day}/${month + 1}/${year} às ${hour}h${minutes}m`;
+};

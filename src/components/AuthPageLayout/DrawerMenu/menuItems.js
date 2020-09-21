@@ -31,6 +31,8 @@ export default [
   },
   {
     id: 4,
+    component: Link,
+    to: '/leagues',
     title: 'Ligas',
     icon: EmojiEventsIcon,
   },

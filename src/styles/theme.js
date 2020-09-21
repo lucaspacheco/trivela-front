@@ -4,9 +4,13 @@ export default responsiveFontSizes(
   createMuiTheme({
     palette: {
       primary: {
-        light: '#669c25',
+        light: '#619641',
         main: '#415e1e',
-        dark: '#2D4115',
+        dark: '#3E592D',
+      },
+      secondary: {
+        light: '#F5BB36',
+        main: '#D4BE00',
       },
     },
     typography: {
