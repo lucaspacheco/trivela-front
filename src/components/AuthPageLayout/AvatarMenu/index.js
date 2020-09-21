@@ -11,6 +11,7 @@ import {
   Edit as EditIcon,
   PowerSettingsNew as PowerSettingsNewIcon,
 } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 
 import useAppStore from 'components/App/store';
 
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const AvatarMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const { userInfo, setUserInfo } = useAppStore();
+  const history = useHistory();
 
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -41,6 +43,11 @@ const AvatarMenu = () => {
 
   const handleCloseMenu = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    history.push('/');
+    setUserInfo({});
   };
 
   const classes = useStyles();
@@ -71,7 +78,7 @@ const AvatarMenu = () => {
           <EditIcon className={classes.icon} />
           <Typography variant="body1">Alterar dados</Typography>
         </MenuItem>
-        <MenuItem onClick={() => setUserInfo({})}>
+        <MenuItem onClick={handleLogout}>
           <PowerSettingsNewIcon className={classes.icon} />
           <Typography variant="body1">Sair</Typography>
         </MenuItem>
