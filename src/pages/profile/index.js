@@ -75,7 +75,7 @@ const Profile = () => {
     setFieldValue(name, value);
 
   return (
-    <AuthPageLayout>
+    <AuthPageLayout heading="Alterar dados">
       <form className={classes.form} onSubmit={handleSubmit} noValidate>
         <Paper elevation={2} className={classes.paper}>
           <TextInput
