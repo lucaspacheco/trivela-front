@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
+    marginBottom: theme.spacing(3),
   },
   title: {
     textTransform: 'uppercase',
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   loader: {
     position: 'absolute',
-    right: -32,
+    right: -48,
   },
 }));
 
