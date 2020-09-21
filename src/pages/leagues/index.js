@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   cardsWrapper: {
     display: 'grid',
     gridTemplateColumns: 'repeat(1, 1fr)',
-    gridGap: theme.spacing(4),
+    gridGap: theme.spacing(6),
 
     [theme.breakpoints.up('sm')]: {
       gridTemplateColumns: 'repeat(2, 1fr)',
