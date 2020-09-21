@@ -21,8 +21,8 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   logo: {
-    width: '20rem',
-    height: '20rem',
+    width: '14rem',
+    height: '14rem',
     marginBottom: theme.spacing(2),
   },
   button: {
