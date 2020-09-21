@@ -7,8 +7,20 @@ import LeagueCard from 'components/LeagueCard';
 import api from 'services/api';
 
 const useStyles = makeStyles((theme) => ({
-  card: {
-    marginBottom: theme.spacing(5),
+  cardsWrapper: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(1, 1fr)',
+    gridGap: theme.spacing(4),
+
+    [theme.breakpoints.up('sm')]: {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
+    [theme.breakpoints.up('lg')]: {
+      gridTemplateColumns: 'repeat(3, 1fr)',
+    },
+    [theme.breakpoints.up('xl')]: {
+      gridTemplateColumns: 'repeat(4, 1fr)',
+    },
   },
 }));
 
@@ -21,9 +33,11 @@ const Leagues = () => {
 
   return (
     <AuthPageLayout heading="Ligas" isFetching={isFetching}>
-      {leagues.map((league) => (
-        <LeagueCard className={classes.card} key={league.id} league={league} />
-      ))}
+      <div className={classes.cardsWrapper}>
+        {leagues.map((league) => (
+          <LeagueCard key={league.id} league={league} />
+        ))}
+      </div>
     </AuthPageLayout>
   );
 };
