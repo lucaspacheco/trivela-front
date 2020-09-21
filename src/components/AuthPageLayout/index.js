@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   main: {
-    padding: theme.spacing(2),
+    padding: `${theme.spacing(4)}px ${theme.spacing(2)}px`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
