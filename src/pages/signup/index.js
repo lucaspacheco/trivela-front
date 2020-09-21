@@ -28,7 +28,7 @@ import api from 'services/api';
 import AutoComplete from 'pages/signup/AutoComplete';
 import useStyles from './styles';
 
-const signInSchema = Yup.object().shape({
+const signUpSchema = Yup.object().shape({
   name: Yup.string().required(validationMessages.required),
   cpf: Yup.string()
     .required(validationMessages.required)
@@ -83,7 +83,7 @@ const Signup = () => {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: signInSchema,
+    validationSchema: signUpSchema,
     validateOnChange: false,
     onSubmit: (formValues) => {
       signUp({ ...formValues });
