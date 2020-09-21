@@ -1,17 +1,21 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useMutation, ReactQueryConfigProvider } from 'react-query';
 import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 
 import Notifications, { useNotify } from 'components/Notification';
 import FullSpinner from 'components/FullSpinner';
 import PrivateRoute from 'components/PrivateRoute';
+
 import HomePage from 'pages/home';
 import LoginPage from 'pages/login';
+import SignupPage from 'pages/signup';
 import ProfilePage from 'pages/profile';
 import MyTeamsPage from 'pages/myTeams';
+
 import theme from 'styles/theme';
 import api from 'services/api';
+import HistoryListener from './HistoryListener';
 import useAppStore from './store';
 
 const queryConfig = {
@@ -92,12 +96,12 @@ const App = () => {
         <Notifications />
 
         <Router>
-          <Switch>
-            <PrivateRoute exact path="/" component={HomePage} />
-            <PrivateRoute exact path="/profile" component={ProfilePage} />
-            <PrivateRoute exact path="/my-teams" component={MyTeamsPage} />
-            <Route exact path="/login" component={LoginPage} />
-          </Switch>
+          <HistoryListener />
+          <PrivateRoute exact path="/" component={HomePage} />
+          <PrivateRoute exact path="/profile" component={ProfilePage} />
+          <PrivateRoute exact path="/my-teams" component={MyTeamsPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/signup" component={SignupPage} />
         </Router>
       </MuiThemeProvider>
     </ReactQueryConfigProvider>
