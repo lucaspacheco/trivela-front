@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, AppBar, Toolbar, makeStyles } from '@material-ui/core';
+import {
+  Box,
+  AppBar,
+  Toolbar,
+  CircularProgress,
+  Typography,
+  makeStyles,
+} from '@material-ui/core';
 
 import DrawerMenu from './DrawerMenu';
 import AvatarMenu from './AvatarMenu';
@@ -16,14 +23,29 @@ const useStyles = makeStyles((theme) => ({
   main: {
     padding: `${theme.spacing(4)}px ${theme.spacing(2)}px`,
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     maxWidth: '1440px',
     margin: '0 auto',
   },
+  titleWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  title: {
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+  },
+  loader: {
+    position: 'absolute',
+    right: -32,
+  },
 }));
 
-const AuthPageLayout = ({ children }) => {
+const AuthPageLayout = ({ children, heading, isFetching }) => {
   const classes = useStyles();
 
   return (
@@ -37,13 +59,29 @@ const AuthPageLayout = ({ children }) => {
           </Box>
         </Toolbar>
       </AppBar>
-      <main className={classes.main}>{children}</main>
+      <main className={classes.main}>
+        <div className={classes.titleWrapper}>
+          <Typography className={classes.title} color="primary" variant="h3">
+            {heading}
+          </Typography>
+          {isFetching && (
+            <CircularProgress size={28} className={classes.loader} />
+          )}
+        </div>
+        {children}
+      </main>
     </Box>
   );
 };
 
 AuthPageLayout.propTypes = {
   children: PropTypes.node.isRequired,
+  heading: PropTypes.string.isRequired,
+  isFetching: PropTypes.bool,
+};
+
+AuthPageLayout.defaultProps = {
+  isFetching: false,
 };
 
 export default AuthPageLayout;
