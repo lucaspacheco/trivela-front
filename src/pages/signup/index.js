@@ -18,44 +18,14 @@ import {
 } from '@material-ui/icons';
 import { useFormik } from 'formik';
 import { IMaskInput } from 'react-imask';
-import * as Yup from 'yup';
 
 import useAppStore from 'components/App/store';
 import TextInput from 'components/TextInput';
-import { isValidCPF } from 'utils/helpers';
-import { validationMessages } from 'utils/consts';
+
 import api from 'services/api';
 import AutoComplete from 'pages/signup/AutoComplete';
 import useStyles from './styles';
-
-const signUpSchema = Yup.object().shape({
-  name: Yup.string().required(validationMessages.required),
-  cpf: Yup.string()
-    .required(validationMessages.required)
-    .test('cpf-valid', 'CPF inválido', (value) => isValidCPF(value)),
-  cartolaTeam: Yup.object().nullable().required(validationMessages.required),
-  cellPhone: Yup.string()
-    .required(validationMessages.required)
-    .matches(/\(\d{2}\)\s\d{4,5}-\d{4}/g, 'Celular inválido'),
-  email: Yup.string()
-    .email('E-mail inválido')
-    .required(validationMessages.required),
-  confirmEmail: Yup.string()
-    .required(validationMessages.required)
-    .test('emails-match', 'Os e-mails não correspondem', function validate(
-      value,
-    ) {
-      return this.parent.email === value;
-    }),
-  password: Yup.string().required(validationMessages.required),
-  confirmPassword: Yup.string()
-    .required(validationMessages.required)
-    .test('passwords-match', 'As senhas não correspondem', function validate(
-      value,
-    ) {
-      return this.parent.password === value;
-    }),
-});
+import validationSchema from './validationSchema';
 
 const Signup = () => {
   const classes = useStyles();
@@ -83,7 +53,7 @@ const Signup = () => {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: signUpSchema,
+    validationSchema,
     validateOnChange: false,
     onSubmit: (formValues) => {
       signUp({ ...formValues });
@@ -185,7 +155,7 @@ const Signup = () => {
           <TextInput
             autoComplete="email"
             className={classes.input}
-            error={errors.name}
+            error={errors.email}
             margin="dense"
             name="email"
             onChange={handleChange}
