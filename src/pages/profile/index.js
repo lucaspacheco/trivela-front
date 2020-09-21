@@ -10,39 +10,15 @@ import {
 } from '@material-ui/icons';
 import { useFormik } from 'formik';
 import { IMaskInput } from 'react-imask';
-import * as Yup from 'yup';
 
 import AuthPageLayout from 'components/AuthPageLayout';
 import useAppStore from 'components/App/store';
 import { useNotify } from 'components/Notification';
 import TextInput from 'components/TextInput';
-import {
-  validationMessages,
-  passwordRegex,
-  cellPhoneRegex,
-} from 'utils/consts';
+
 import api from 'services/api';
 import useStyles from './styles';
-
-const updateProfileSchema = Yup.object().shape({
-  name: Yup.string().required(validationMessages.required),
-  cellPhone: Yup.string()
-    .required(validationMessages.required)
-    .matches(cellPhoneRegex, 'Celular inválido'),
-  email: Yup.string()
-    .email('E-mail inválido')
-    .required(validationMessages.required),
-  password: Yup.string()
-    .required(validationMessages.required)
-    .matches(passwordRegex, validationMessages.passwordStrength),
-  confirmPassword: Yup.string()
-    .required(validationMessages.required)
-    .test('passwords-match', 'As senhas não correspondem', function validate(
-      value,
-    ) {
-      return this.parent.password === value;
-    }),
-});
+import validationSchema from './validationSchema';
 
 const Profile = () => {
   const classes = useStyles();
@@ -74,7 +50,7 @@ const Profile = () => {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: updateProfileSchema,
+    validationSchema,
     validateOnChange: false,
     onSubmit: (formValues) => {
       updateProfile({ ...formValues });
