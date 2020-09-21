@@ -7,6 +7,7 @@ import {
   InputAdornment,
   FormHelperText,
   FormControl,
+  Typography,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { SportsSoccerOutlined as SportsSoccerOutlinedIcon } from '@material-ui/icons';
@@ -153,6 +154,10 @@ const AutoComplete = ({ className, error, onOptionChange }) => {
                     {part.text.toUpperCase()}
                   </span>
                 ))}
+
+                <Typography variant="body2" color="textSecondary">
+                  {`Cartoleiro: ${option.nome_cartola}`}
+                </Typography>
               </Grid>
             </Grid>
           );
