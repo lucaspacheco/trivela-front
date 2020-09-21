@@ -16,10 +16,10 @@ const App = () => {
   const setUserInfo = useStore((state) => state.setUserInfo);
 
   const [checkToken, { isLoading }] = useMutation(
-    (userToken) =>
+    () =>
       api.get('/refresh-token', {
         headers: {
-          Authorization: `Bearer ${userToken}`,
+          Authorization: `Bearer ${token}`,
         },
       }),
     {

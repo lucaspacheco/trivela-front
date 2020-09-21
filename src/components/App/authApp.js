@@ -47,7 +47,11 @@ const AuthApp = () => {
   }, []);
 
   useEffect(() => {
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+    if (token) api.defaults.headers.Authorization = `Bearer ${token}`;
+
+    return () => {
+      delete api.defaults.headers.Authorization;
+    };
   }, [token]);
 
   return (
