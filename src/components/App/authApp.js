@@ -13,7 +13,10 @@ import api from 'services/api';
 import useAppStore from './store';
 
 const AuthApp = () => {
-  const setUserInfo = useAppStore((state) => state.setUserInfo);
+  const {
+    userInfo: { token },
+    setUserInfo,
+  } = useAppStore();
   const history = useHistory();
   const notify = useNotify();
 
@@ -42,6 +45,10 @@ const AuthApp = () => {
       return Promise.reject(error);
     });
   }, []);
+
+  useEffect(() => {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }, [token]);
 
   return (
     <Router>
