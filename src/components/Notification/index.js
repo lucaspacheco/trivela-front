@@ -39,4 +39,7 @@ const Notification = () => {
   );
 };
 
+export const useNotify = () =>
+  useNotification((state) => state.showNotification);
+
 export default Notification;

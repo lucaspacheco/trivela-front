@@ -7,20 +7,20 @@ import {
 } from 'react-router-dom';
 
 import HomePage from 'pages/home';
-import useNotification from 'components/Notification/store';
+import { useNotify } from 'components/Notification';
 import api from 'services/api';
 import useAppStore from './store';
 
 const AuthApp = () => {
   const setUserInfo = useAppStore((state) => state.setUserInfo);
   const history = useHistory();
-  const showNotification = useNotification((state) => state.showNotification);
+  const notify = useNotify();
 
   useEffect(() => {
     api.interceptors.response.use(undefined, (error) => {
       if (error.response.status === 401) {
         history.push('/');
-        showNotification({
+        notify({
           type: 'error',
           message: 'Sessão expirada, autentique-se novamente',
         });

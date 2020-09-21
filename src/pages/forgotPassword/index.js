@@ -18,7 +18,7 @@ import api from 'services/api';
 import logo from 'assets/logo.svg';
 import { validationMessages } from 'utils/consts';
 import RenderImg from 'components/RenderImg';
-import useNotification from 'components/Notification/store';
+import { useNotify } from 'components/Notification';
 import useStyles from './styles';
 
 const signInSchema = Yup.object().shape({
@@ -29,14 +29,14 @@ const signInSchema = Yup.object().shape({
 
 const ForgotPassword = () => {
   const classes = useStyles();
-  const showNotification = useNotification((state) => state.showNotification);
+  const notify = useNotify();
 
   const [
     recoverPassword,
     { isLoading, reset: resetMutation, error: mutationError },
   ] = useMutation(({ email }) => api.post('/forgot-password', { email }), {
     onSuccess: () => {
-      showNotification({
+      notify({
         message: 'E-mail enviado! Não esqueça de verificar sua caixa de spam.',
         type: 'success',
       });
