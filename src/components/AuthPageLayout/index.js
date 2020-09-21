@@ -5,7 +5,7 @@ import { Box, AppBar, Toolbar, makeStyles } from '@material-ui/core';
 import DrawerMenu from './DrawerMenu';
 import AvatarMenu from './AvatarMenu';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   toolbar: {},
   profileMenu: {
     display: 'flex',
@@ -13,7 +13,13 @@ const useStyles = makeStyles({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
-});
+  main: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+}));
 
 const AuthPageLayout = ({ children }) => {
   const classes = useStyles();
@@ -29,7 +35,7 @@ const AuthPageLayout = ({ children }) => {
           </Box>
         </Toolbar>
       </AppBar>
-      <main>{children}</main>
+      <main className={classes.main}>{children}</main>
     </Box>
   );
 };
