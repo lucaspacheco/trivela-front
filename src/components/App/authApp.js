@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import HomePage from 'pages/home';
+import ProfilePage from 'pages/profile';
 import { useNotify } from 'components/Notification';
 import api from 'services/api';
 import useAppStore from './store';
@@ -46,6 +47,7 @@ const AuthApp = () => {
     <Router>
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/profile" component={ProfilePage} />
       </Switch>
     </Router>
   );
