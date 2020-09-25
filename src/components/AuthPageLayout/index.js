@@ -61,14 +61,17 @@ const AuthPageLayout = ({ children, heading, isFetching }) => {
         </Toolbar>
       </AppBar>
       <main className={classes.main}>
-        <div className={classes.titleWrapper}>
-          <Typography className={classes.title} color="primary" variant="h3">
-            {heading}
-          </Typography>
-          {isFetching && (
-            <CircularProgress size={28} className={classes.loader} />
-          )}
-        </div>
+        {!!heading && (
+          <div className={classes.titleWrapper}>
+            <Typography className={classes.title} color="primary" variant="h3">
+              {heading}
+            </Typography>
+
+            {isFetching && (
+              <CircularProgress size={28} className={classes.loader} />
+            )}
+          </div>
+        )}
         {children}
       </main>
     </Box>
@@ -77,12 +80,13 @@ const AuthPageLayout = ({ children, heading, isFetching }) => {
 
 AuthPageLayout.propTypes = {
   children: PropTypes.node.isRequired,
-  heading: PropTypes.string.isRequired,
+  heading: PropTypes.string,
   isFetching: PropTypes.bool,
 };
 
 AuthPageLayout.defaultProps = {
   isFetching: false,
+  heading: '',
 };
 
 export default AuthPageLayout;
