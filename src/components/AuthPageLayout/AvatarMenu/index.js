@@ -81,7 +81,9 @@ const AvatarMenu = () => {
         </MenuItem>
         <MenuItem>
           <LockIcon className={classes.icon} />
-          <Typography variant="body1">Alterar senha</Typography>
+          <Typography variant="body1" onClick={() => history.push('/profile')}>
+            Alterar senha
+          </Typography>
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <PowerSettingsNewIcon className={classes.icon} />
