@@ -16,5 +16,8 @@ export default create((set) => ({
     set({ userInfo, isAuthenticated: true });
     setCookie('trivela_token', userInfo.token);
   },
-  logout: () => set({ userInfo: {}, isAuthenticated: false }),
+  logout: () => {
+    set({ userInfo: {}, isAuthenticated: false });
+    setCookie('trivela_token', null);
+  },
 }));
