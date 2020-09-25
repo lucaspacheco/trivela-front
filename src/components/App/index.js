@@ -85,6 +85,7 @@ const App = () => {
   useLayoutEffect(() => {
     (async () => {
       if (token) await checkToken();
+      else setIsLoading(false);
     })();
   }, []);
 
