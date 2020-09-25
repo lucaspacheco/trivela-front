@@ -28,4 +28,8 @@ export default makeStyles((theme) => ({
     alignSelf: 'flex-start',
     marginTop: theme.spacing(1.5),
   },
+  divider: {
+    alignSelf: 'stretch',
+    margin: `${theme.spacing(2)}px 0`,
+  },
 }));

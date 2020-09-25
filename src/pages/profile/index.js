@@ -1,5 +1,11 @@
 import React from 'react';
-import { Paper, Button, Typography, CircularProgress } from '@material-ui/core';
+import {
+  Paper,
+  Button,
+  Typography,
+  CircularProgress,
+  Divider,
+} from '@material-ui/core';
 import { useMutation } from 'react-query';
 import {
   PersonOutlineOutlined as PersonOutlineIcon,
@@ -47,7 +53,9 @@ const Profile = () => {
       cpf: '',
       cellPhone: '',
       email: '',
-      password: '',
+      actualPassword: '',
+      newPassword: '',
+      confirmPassword: '',
     },
     validationSchema,
     validateOnChange: false,
@@ -64,7 +72,8 @@ const Profile = () => {
           cpf: userInfo.cpf,
           cellPhone: userInfo.cellPhone,
           email: userInfo.email,
-          password: '',
+          actualPassword: '',
+          newPassword: '',
           confirmPassword: '',
         },
       });
@@ -169,23 +178,71 @@ const Profile = () => {
             required
           />
 
+          <Divider className={classes.divider} />
+          <Typography>
+            Se desejar alterar sua senha, preencha os campos abaixo:
+          </Typography>
+
           <TextInput
             autoComplete="password"
             className={classes.input}
-            error={errors.password}
+            error={errors.actualPassword}
             margin="dense"
-            name="password"
+            name="actualPassword"
             onChange={handleChange}
-            label="Senha"
+            label="Senha atual"
             placeholder="Digite sua senha atual"
             startAdornment={
-              <LockOutlinedIcon color={errors.password ? 'error' : 'inherit'} />
+              <LockOutlinedIcon
+                color={errors.actualPassword ? 'error' : 'inherit'}
+              />
             }
             type="password"
             variant="outlined"
-            value={values.password}
+            value={values.actualPassword}
             fullWidth
-            required
+          />
+
+          <TextInput
+            autoComplete="password"
+            className={classes.input}
+            error={errors.newPassword}
+            margin="dense"
+            name="newPassword"
+            onChange={handleChange}
+            label="Nova senha"
+            placeholder="Digite sua nova senha"
+            startAdornment={
+              <LockOutlinedIcon
+                color={errors.newPassword ? 'error' : 'inherit'}
+              />
+            }
+            type="password"
+            variant="outlined"
+            value={values.newPassword}
+            required={!!values.actualPassword}
+            fullWidth
+          />
+
+          <TextInput
+            autoComplete="password"
+            className={classes.input}
+            error={errors.confirmPassword}
+            margin="dense"
+            name="confirmPassword"
+            onChange={handleChange}
+            label="Confirme a nova senha"
+            placeholder="Confirme sua nova senha"
+            startAdornment={
+              <LockOutlinedIcon
+                color={errors.confirmPassword ? 'error' : 'inherit'}
+              />
+            }
+            type="password"
+            variant="outlined"
+            value={values.confirmPassword}
+            required={!!values.actualPassword}
+            fullWidth
           />
 
           {mutationError?.message && (
