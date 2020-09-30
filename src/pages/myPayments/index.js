@@ -1,4 +1,5 @@
 import React from 'react';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import AuthPageLayout from 'components/AuthPageLayout';
 import { formatMoney, dateToString } from 'utils/helpers';
@@ -10,7 +11,14 @@ const MyPayments = () => {
   const { payments, isFetching } = useMyPayments();
 
   return (
-    <AuthPageLayout heading="Meus pagamentos" isFetching={isFetching}>
+    <AuthPageLayout
+      heading="Meus pagamentos"
+      isFetching={isFetching}
+      showShimmer={!payments.length && isFetching}
+      shimmerComponent={
+        <Skeleton variant="rect" animation="wave" width="100%" height={500} />
+      }
+    >
       {(!isFetching || !!payments.length) && (
         <Table
           data={payments.map((item) => ({

@@ -1,16 +1,24 @@
 import React from 'react';
+import Skeleton from '@material-ui/lab/Skeleton';
+import { Typography } from '@material-ui/core';
 
 import AuthPageLayout from 'components/AuthPageLayout';
 import Table from 'components/Table';
 import { useMyLeagues } from 'queries/index';
-import { Typography } from '@material-ui/core';
 import RenderImg from 'components/RenderImg';
 
 const MyLeagues = () => {
   const { myLeagues, isFetching } = useMyLeagues();
 
   return (
-    <AuthPageLayout heading="Minhas ligas" isFetching={isFetching}>
+    <AuthPageLayout
+      heading="Minhas ligas"
+      isFetching={isFetching}
+      showShimmer={!myLeagues.length && isFetching}
+      shimmerComponent={
+        <Skeleton variant="rect" animation="wave" width="100%" height={300} />
+      }
+    >
       {(!isFetching || !!myLeagues.length) && (
         <Table
           data={myLeagues.map((league) => ({

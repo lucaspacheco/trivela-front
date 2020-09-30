@@ -1,6 +1,7 @@
 import React from 'react';
 import { Delete as DeleteIcon } from '@material-ui/icons';
 import { IconButton, Tooltip, Typography, Button } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import AuthPageLayout from 'components/AuthPageLayout';
 import RenderImg from 'components/RenderImg';
@@ -13,7 +14,14 @@ const MyTeams = () => {
   const { teams, isFetching } = useMyTeams();
 
   return (
-    <AuthPageLayout heading="Meus times" isFetching={isFetching}>
+    <AuthPageLayout
+      heading="Meus times"
+      isFetching={isFetching}
+      showShimmer={!teams.length && isFetching}
+      shimmerComponent={
+        <Skeleton variant="rect" animation="wave" width="100%" height={300} />
+      }
+    >
       {!!teams.length && (
         <Button
           variant="contained"

@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import AuthPageLayout from 'components/AuthPageLayout';
 import LeagueCard from 'components/LeagueCard';
@@ -28,7 +29,14 @@ const Leagues = () => {
   const { leagues, isFetching } = useLeagues();
 
   return (
-    <AuthPageLayout heading="Ligas" isFetching={isFetching}>
+    <AuthPageLayout
+      heading="Ligas"
+      isFetching={isFetching}
+      showShimmer={!leagues.length && isFetching}
+      shimmerComponent={
+        <Skeleton variant="rect" animation="wave" width="100%" height={600} />
+      }
+    >
       <div className={classes.cardsWrapper}>
         {leagues.map((league) => (
           <LeagueCard key={league.id} league={league} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import AuthPageLayout from 'components/AuthPageLayout';
 import { CircularProgress, Typography } from '@material-ui/core';
@@ -30,11 +31,15 @@ const Home = () => {
         {isFetching && <CircularProgress size={32} />}
       </Typography>
 
-      <div className={classes.cardsWrapper}>
-        {hotLeagues.map((league) => (
-          <LeagueCard key={league.id} league={league} />
-        ))}
-      </div>
+      {!hotLeagues.length && isFetching ? (
+        <Skeleton variant="rect" animation="wave" width="100%" height={600} />
+      ) : (
+        <div className={classes.cardsWrapper}>
+          {hotLeagues.map((league) => (
+            <LeagueCard key={league.id} league={league} />
+          ))}
+        </div>
+      )}
     </AuthPageLayout>
   );
 };
