@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
     },
 
     '& th, & td': {
-      padding: `${theme.spacing(0.5)}px ${theme.spacing(4)}px`,
+      padding: `${theme.spacing(1)}px ${theme.spacing(4)}px`,
     },
 
     '@media screen and (max-width: 40em)': {
