@@ -32,7 +32,13 @@ const Home = () => {
       </Typography>
 
       {!hotLeagues.length && isFetching ? (
-        <Skeleton variant="rect" animation="wave" width="100%" height={600} />
+        <Skeleton
+          variant="rect"
+          animation="wave"
+          width="100%"
+          height={600}
+          style={{ marginTop: '2.4rem' }}
+        />
       ) : (
         <div className={classes.cardsWrapper}>
           {hotLeagues.map((league) => (
