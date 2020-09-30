@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Delete as DeleteIcon } from '@material-ui/icons';
 import { IconButton, Tooltip, Typography, Button } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -8,8 +8,10 @@ import RenderImg from 'components/RenderImg';
 import Table from 'components/Table';
 import { useMyTeams } from 'queries/index';
 import useStyles from './styles';
+import NewTeamModal from './NewTeamModal';
 
 const MyTeams = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const classes = useStyles();
   const { teams, isFetching } = useMyTeams();
 
@@ -22,11 +24,13 @@ const MyTeams = () => {
         <Skeleton variant="rect" animation="wave" width="100%" height={300} />
       }
     >
+      <NewTeamModal open={modalOpen} handleClose={() => setModalOpen(false)} />
       {!!teams.length && (
         <Button
           variant="contained"
           color="primary"
           className={classes.addButton}
+          onClick={() => setModalOpen(true)}
         >
           Adicionar time
         </Button>
