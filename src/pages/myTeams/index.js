@@ -42,7 +42,7 @@ const MyTeams = () => {
               Ações: (
                 <Tooltip title="Excluir time">
                   <IconButton
-                    className={classes.button}
+                    className={classes.deleteButton}
                     onClick={() => console.log('delete ID:', team.id)}
                   >
                     <DeleteIcon />

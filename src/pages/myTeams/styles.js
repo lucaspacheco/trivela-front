@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
 export default makeStyles((theme) => ({
+  deleteButton: {},
   table: {
     width: '100%',
     '@media screen and (max-width: 40em)': {
@@ -11,6 +12,10 @@ export default makeStyles((theme) => ({
 
         '& h6': {
           fontWeight: 'bold',
+        },
+
+        '& $deleteButton': {
+          marginLeft: theme.spacing(-2),
         },
       },
     },
