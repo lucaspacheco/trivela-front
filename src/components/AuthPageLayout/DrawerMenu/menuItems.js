@@ -49,6 +49,8 @@ export default [
   },
   {
     id: 6,
+    component: Link,
+    to: '/my-leagues',
     title: 'Minhas ligas',
     icon: TodayIcon,
     divider: true,

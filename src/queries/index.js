@@ -36,3 +36,15 @@ export const useMyPayments = () => {
     isFetching,
   };
 };
+
+export const useMyLeagues = () => {
+  const {
+    data: { data: { myLeagues = [] } = {} } = {},
+    isFetching,
+  } = useQuery('my-leagues', () => api.get('/my-leagues'));
+
+  return {
+    myLeagues,
+    isFetching,
+  };
+};
