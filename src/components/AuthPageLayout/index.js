@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   loader: {
     position: 'absolute',
-    right: -48,
+    right: -40,
   },
 }));
 
