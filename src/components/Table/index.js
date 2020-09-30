@@ -29,7 +29,11 @@ const Table = ({ data }) => {
             <RT.Tr key={item[headings[0]]}>
               {headings.map((head) => (
                 <RT.Td key={head}>
-                  <Typography>{item[head]}</Typography>
+                  {typeof item[head] === 'object' ? (
+                    item[head]
+                  ) : (
+                    <Typography>{item[head]}</Typography>
+                  )}
                 </RT.Td>
               ))}
             </RT.Tr>
