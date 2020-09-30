@@ -34,6 +34,8 @@ export default [
   },
   {
     id: 4,
+    component: Link,
+    to: '/my-payments',
     title: 'Meus pagamentos',
     icon: PaymentIcon,
     divider: true,
