@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import { useMutation, useQuery } from 'react-query';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import AuthPageLayout from 'components/AuthPageLayout';
@@ -18,19 +17,17 @@ import TextInput from 'components/TextInput';
 import { useNotify } from 'components/Notification';
 import useAppStore from 'components/App/store';
 import api from 'services/api';
-import { validationMessages } from 'utils/consts';
+import { useLeagues, useMyTeams } from 'queries/index';
 import useStyles from './styles';
 import validationSchema from './validationSchema';
-
-const validationSchema = Yup.object().shape({
-  reason: Yup.object().nullable().required(validationMessages.required),
-  description: Yup.string().required(validationMessages.required),
-});
 
 const ContactUs = () => {
   const classes = useStyles();
   const notify = useNotify();
   const userInfo = useAppStore((state) => state.userInfo);
+
+  const { leagues, isFetching: isFetchingLeagues } = useLeagues();
+  const { teams, isFetching: isFetchingTeams } = useMyTeams();
 
   const {
     data: { data: { options = [] } = {} } = {},
@@ -65,6 +62,8 @@ const ContactUs = () => {
   } = useFormik({
     initialValues: {
       reason: null,
+      league: null,
+      team: null,
       description: '',
     },
     validationSchema,
@@ -75,7 +74,10 @@ const ContactUs = () => {
   });
 
   return (
-    <AuthPageLayout heading="Fale conosco" isFetching={fetchingOptions}>
+    <AuthPageLayout
+      heading="Fale conosco"
+      isFetching={fetchingOptions || isFetchingLeagues || isFetchingTeams}
+    >
       <form className={classes.form} onSubmit={handleSubmit} noValidate>
         <Paper elevation={2} className={classes.paper}>
           <Typography variant="h6" align="center" paragraph>
@@ -86,7 +88,7 @@ const ContactUs = () => {
             e-mail.
           </Typography>
 
-          <FormControl fullWidth variant="outlined">
+          <FormControl fullWidth variant="outlined" className={classes.input}>
             <Autocomplete
               options={options}
               getOptionLabel={(option) => option.description || ''}
@@ -101,6 +103,7 @@ const ContactUs = () => {
                   variant="outlined"
                   error={!!errors.reason}
                   margin="dense"
+                  required
                 />
               )}
               value={values.reason}
@@ -112,6 +115,76 @@ const ContactUs = () => {
               <FormHelperText error>{errors.reason}</FormHelperText>
             )}
           </FormControl>
+
+          {values.reason?.value === 'team-not-added' && (
+            <>
+              <FormControl
+                fullWidth
+                variant="outlined"
+                className={classes.input}
+              >
+                <Autocomplete
+                  options={leagues}
+                  getOptionLabel={(option) =>
+                    option.round ? `Rodada #${option.round}` : ''
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Selecione a liga"
+                      placeholder="Selecione a liga"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      variant="outlined"
+                      error={!!errors.league}
+                      margin="dense"
+                      required
+                    />
+                  )}
+                  value={values.league}
+                  onChange={(_, newValue) => setFieldValue('league', newValue)}
+                  disabled={fetchingOptions}
+                  noOptionsText="Nenhum resultado encontrado"
+                />
+                {!!errors.league && (
+                  <FormHelperText error>{errors.league}</FormHelperText>
+                )}
+              </FormControl>
+
+              <FormControl
+                fullWidth
+                variant="outlined"
+                className={classes.input}
+              >
+                <Autocomplete
+                  options={teams}
+                  getOptionLabel={(option) => option.name || ''}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Selecione o time"
+                      placeholder="Selecione o time"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      variant="outlined"
+                      error={!!errors.team}
+                      margin="dense"
+                      required
+                    />
+                  )}
+                  value={values.team}
+                  onChange={(_, newValue) => setFieldValue('team', newValue)}
+                  disabled={fetchingOptions}
+                  noOptionsText="Nenhum resultado encontrado"
+                />
+                {!!errors.team && (
+                  <FormHelperText error>{errors.team}</FormHelperText>
+                )}
+              </FormControl>
+            </>
+          )}
 
           <TextInput
             className={classes.input}
