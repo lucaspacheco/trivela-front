@@ -23,7 +23,7 @@ import useAppStore from 'components/App/store';
 import TextInput from 'components/TextInput';
 
 import api from 'services/api';
-import AutoComplete from 'pages/signup/AutoComplete';
+import AutoComplete from 'components/CartolaSearchBox';
 import useStyles from './styles';
 import validationSchema from './validationSchema';
 
