@@ -1,5 +1,4 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import RT from 'react-super-responsive-table';
 import { Delete as DeleteIcon } from '@material-ui/icons';
 import {
@@ -9,20 +8,16 @@ import {
   Paper,
   Button,
 } from '@material-ui/core';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 import AuthPageLayout from 'components/AuthPageLayout';
-import api from 'services/api';
-
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import RenderImg from 'components/RenderImg';
+import { useMyTeams } from 'queries/index';
 import useStyles from './styles';
 
 const MyTeams = () => {
   const classes = useStyles();
-  const {
-    data: { data: { teams = [] } = {} } = {},
-    isFetching,
-  } = useQuery('my-teams', () => api.get('/my-teams'));
+  const { teams, isFetching } = useMyTeams();
 
   const Table = (
     <Paper className={classes.paper} elevation={3}>

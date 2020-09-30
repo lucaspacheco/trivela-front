@@ -1,10 +1,9 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import { makeStyles } from '@material-ui/core';
 
 import AuthPageLayout from 'components/AuthPageLayout';
 import LeagueCard from 'components/LeagueCard';
-import api from 'services/api';
+import { useLeagues } from 'queries/index';
 
 const useStyles = makeStyles((theme) => ({
   cardsWrapper: {
@@ -26,10 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Leagues = () => {
   const classes = useStyles();
-  const {
-    data: { data: { leagues = [] } = {} } = {},
-    isFetching,
-  } = useQuery('leagues', () => api.get('/leagues'));
+  const { leagues, isFetching } = useLeagues();
 
   return (
     <AuthPageLayout heading="Ligas" isFetching={isFetching}>
