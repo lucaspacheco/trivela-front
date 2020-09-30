@@ -23,10 +23,13 @@ const TextInput = ({
   inputProps,
   label,
   margin,
+  multiline,
   name,
   onChange,
   placeholder,
   required,
+  rows,
+  rowsMax,
   startAdornment,
   type,
   value,
@@ -54,9 +57,12 @@ const TextInput = ({
         inputComponent={inputComponent}
         inputProps={inputProps}
         label={label}
+        multiline={multiline}
         name={name}
         onChange={onChange}
         placeholder={placeholder}
+        rows={rows}
+        rowsMax={rowsMax}
         startAdornment={
           <InputAdornment position="start">{startAdornment}</InputAdornment>
         }
@@ -81,10 +87,13 @@ TextInput.propTypes = {
   inputProps: PropTypes.shape({}),
   label: PropTypes.string,
   margin: PropTypes.oneOf(['dense', 'none', 'normal']),
+  multiline: PropTypes.bool,
   name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  rows: PropTypes.number,
+  rowsMax: PropTypes.number,
   startAdornment: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.oneOf([undefined]),
@@ -104,9 +113,12 @@ TextInput.defaultProps = {
   inputProps: undefined,
   label: '',
   margin: 'dense',
+  multiline: false,
   name: '',
   placeholder: '',
   required: false,
+  rows: undefined,
+  rowsMax: undefined,
   startAdornment: undefined,
   type: 'text',
   variant: 'outlined',
