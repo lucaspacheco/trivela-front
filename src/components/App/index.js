@@ -1,7 +1,8 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { useMutation, ReactQueryConfigProvider } from 'react-query';
+import { useMutation, ReactQueryCacheProvider, QueryCache } from 'react-query';
 import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
+import RQDT from 'react-query-devtools';
 
 import Notifications, { useNotify } from 'components/Notification';
 import FullSpinner from 'components/FullSpinner';
@@ -21,11 +22,14 @@ import api from 'services/api';
 import RedirectIfAuthenticated from './RedirectIfAuthenticated';
 import useAppStore from './store';
 
-const queryConfig = {
-  queries: {
-    refetchOnWindowFocus: false,
+const queryCache = new QueryCache({
+  defaultConfig: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 60 * 1000,
+    },
   },
-};
+});
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -94,8 +98,10 @@ const App = () => {
   if (isLoading || isLoadingMutation) return <FullSpinner />;
 
   return (
-    <ReactQueryConfigProvider config={queryConfig}>
+    <ReactQueryCacheProvider queryCache={queryCache}>
       <MuiThemeProvider theme={theme}>
+        <RQDT.ReactQueryDevtools initialIsOpen />
+
         <CssBaseline />
         <Notifications />
 
@@ -111,7 +117,7 @@ const App = () => {
           <Route exact path="/signup" component={SignupPage} />
         </Router>
       </MuiThemeProvider>
-    </ReactQueryConfigProvider>
+    </ReactQueryCacheProvider>
   );
 };
 
