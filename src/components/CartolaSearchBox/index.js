@@ -169,12 +169,13 @@ const AutoComplete = ({ className, error, onOptionChange }) => {
 };
 
 AutoComplete.propTypes = {
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   error: PropTypes.string,
   onOptionChange: PropTypes.func.isRequired,
 };
 
 AutoComplete.defaultProps = {
+  className: '',
   error: '',
 };
 
