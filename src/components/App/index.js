@@ -56,6 +56,7 @@ const App = () => {
       onSuccess: ({ data }) => {
         login(data);
         setIsLoading(false);
+        api.defaults.headers.Authorization = `Bearer ${data.token}`;
       },
     },
   );
