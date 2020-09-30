@@ -105,6 +105,7 @@ const ContactUs = () => {
               value={values.reason}
               onChange={(_, newValue) => setFieldValue('reason', newValue)}
               disabled={fetchingOptions}
+              noOptionsText="Nenhum resultado encontrado"
             />
             {!!errors.reason && (
               <FormHelperText error>{errors.reason}</FormHelperText>
