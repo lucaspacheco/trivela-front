@@ -14,6 +14,7 @@ import ProfilePage from 'pages/profile';
 import MyTeamsPage from 'pages/myTeams';
 import MyPaymentsPage from 'pages/myPayments';
 import LeaguesPage from 'pages/leagues';
+import ContactUsPage from 'pages/contactUs';
 
 import theme from 'styles/theme';
 import api from 'services/api';
@@ -105,6 +106,7 @@ const App = () => {
           <PrivateRoute exact path="/my-teams" component={MyTeamsPage} />
           <PrivateRoute exact path="/my-payments" component={MyPaymentsPage} />
           <PrivateRoute exact path="/leagues" component={LeaguesPage} />
+          <PrivateRoute exact path="/contact-us" component={ContactUsPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
         </Router>

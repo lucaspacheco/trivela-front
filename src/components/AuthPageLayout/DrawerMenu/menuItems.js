@@ -55,6 +55,8 @@ export default [
   },
   {
     id: 7,
+    component: Link,
+    to: '/contact-us',
     title: 'Fale conosco',
     icon: ContactSupportIcon,
   },
