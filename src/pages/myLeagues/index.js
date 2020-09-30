@@ -18,6 +18,7 @@ const MyLeagues = () => {
             Liga: `Rodada ${league.round}`,
             Times: league.teams.map((team) => (
               <div
+                key={team.id}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
