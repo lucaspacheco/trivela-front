@@ -20,6 +20,7 @@ import useAppStore from 'components/App/store';
 import api from 'services/api';
 import { validationMessages } from 'utils/consts';
 import useStyles from './styles';
+import validationSchema from './validationSchema';
 
 const validationSchema = Yup.object().shape({
   reason: Yup.object().nullable().required(validationMessages.required),
