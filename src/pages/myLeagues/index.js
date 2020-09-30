@@ -11,7 +11,7 @@ const MyLeagues = () => {
 
   return (
     <AuthPageLayout heading="Minhas ligas" isFetching={isFetching}>
-      {!isFetching && (
+      {(!isFetching || !!myLeagues.length) && (
         <Table
           data={myLeagues.map((league) => ({
             ID: league.id,

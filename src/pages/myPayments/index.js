@@ -11,7 +11,7 @@ const MyPayments = () => {
 
   return (
     <AuthPageLayout heading="Meus pagamentos" isFetching={isFetching}>
-      {!isFetching && (
+      {(!isFetching || !!payments.length) && (
         <Table
           data={payments.map((item) => ({
             ID: item.id,

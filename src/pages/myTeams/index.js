@@ -23,7 +23,7 @@ const MyTeams = () => {
           Adicionar time
         </Button>
       )}
-      {!isFetching && (
+      {(!isFetching || !!teams.length) && (
         <div className={classes.table}>
           <Table
             data={teams.map((team) => ({
