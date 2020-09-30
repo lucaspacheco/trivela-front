@@ -46,7 +46,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AuthPageLayout = ({ children, heading, isFetching }) => {
+const AuthPageLayout = ({
+  children,
+  heading,
+  isFetching,
+  showShimmer,
+  shimmerComponent,
+}) => {
   const classes = useStyles();
 
   return (
@@ -72,7 +78,7 @@ const AuthPageLayout = ({ children, heading, isFetching }) => {
             )}
           </div>
         )}
-        {children}
+        {showShimmer ? shimmerComponent : children}
       </main>
     </Box>
   );
@@ -82,11 +88,15 @@ AuthPageLayout.propTypes = {
   children: PropTypes.node.isRequired,
   heading: PropTypes.string,
   isFetching: PropTypes.bool,
+  showShimmer: PropTypes.bool,
+  shimmerComponent: PropTypes.element,
 };
 
 AuthPageLayout.defaultProps = {
   isFetching: false,
   heading: '',
+  showShimmer: false,
+  shimmerComponent: <></>,
 };
 
 export default AuthPageLayout;
