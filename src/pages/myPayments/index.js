@@ -1,21 +1,17 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import RT from 'react-super-responsive-table';
 import { Typography, Paper } from '@material-ui/core';
 
 import AuthPageLayout from 'components/AuthPageLayout';
-import api from 'services/api';
 import { formatMoney, dateToString } from 'utils/helpers';
 
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+import { useMyPayments } from 'queries/index';
 import useStyles from './styles';
 
 const MyPayments = () => {
   const classes = useStyles();
-  const {
-    data: { data: { payments = [] } = {} } = {},
-    isFetching,
-  } = useQuery('my-payments', () => api.get('/my-payments'));
+  const { payments, isFetching } = useMyPayments();
 
   const Table = (
     <Paper className={classes.paper} elevation={3}>

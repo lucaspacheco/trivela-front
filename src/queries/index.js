@@ -24,3 +24,15 @@ export const useLeagues = () => {
     isFetching,
   };
 };
+
+export const useMyPayments = () => {
+  const {
+    data: { data: { payments = [] } = {} } = {},
+    isFetching,
+  } = useQuery('my-payments', () => api.get('/my-payments'));
+
+  return {
+    payments,
+    isFetching,
+  };
+};
