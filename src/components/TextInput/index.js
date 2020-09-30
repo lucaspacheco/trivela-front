@@ -64,7 +64,9 @@ const TextInput = ({
         rows={rows}
         rowsMax={rowsMax}
         startAdornment={
-          <InputAdornment position="start">{startAdornment}</InputAdornment>
+          !!startAdornment && (
+            <InputAdornment position="start">{startAdornment}</InputAdornment>
+          )
         }
         type={type}
         value={value}
