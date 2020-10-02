@@ -2,10 +2,13 @@ import { useQuery } from 'react-query';
 import api from 'services/api';
 
 export const useMyTeams = () => {
-  const {
-    data: { data: { teams = [] } = {} } = {},
-    isFetching,
-  } = useQuery('my-teams', () => api.get('/my-teams'));
+  const { data: { data: { teams = [] } = {} } = {}, isFetching } = useQuery(
+    'my-teams',
+    () => api.get('/my-teams'),
+    {
+      staleTime: 5 * 60 * 1000,
+    },
+  );
 
   return {
     teams,
