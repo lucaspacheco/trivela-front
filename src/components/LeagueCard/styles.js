@@ -58,7 +58,7 @@ export default makeStyles((theme) => ({
       fontWeight: 'bold',
     },
 
-    '& > span > svg': {
+    '& > span > span > svg': {
       color: theme.palette.common.white,
       marginLeft: theme.spacing(1),
     },
