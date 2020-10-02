@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
 const DrawerMenu = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const buttonRef = React.useRef();
 
-  const handleOpenDrawer = (event) => setAnchorEl(event);
+  const handleOpenDrawer = () => setAnchorEl(buttonRef);
 
   const handleCloseDrawer = () => setAnchorEl(null);
 
@@ -54,7 +55,7 @@ const DrawerMenu = () => {
   return (
     <>
       <Tooltip title="Menu principal" disableFocusListener>
-        <IconButton onClick={handleOpenDrawer}>
+        <IconButton ref={buttonRef} onClick={handleOpenDrawer}>
           <MenuIcon />
         </IconButton>
       </Tooltip>
