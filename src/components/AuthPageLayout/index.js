@@ -7,8 +7,10 @@ import {
   CircularProgress,
   Typography,
   makeStyles,
+  Divider,
 } from '@material-ui/core';
 
+import ShoppinCart from 'components/ShoppingCart';
 import DrawerMenu from './DrawerMenu';
 import AvatarMenu from './AvatarMenu';
 
@@ -56,12 +58,18 @@ const AuthPageLayout = ({
   const classes = useStyles();
 
   return (
-    <Box height="100%">
-      <AppBar position="static">
+    <Box height="100%" overflow="scroll">
+      <AppBar position="sticky">
         <Toolbar className={classes.toolbar}>
           <DrawerMenu />
 
           <Box className={classes.profileMenu}>
+            <ShoppinCart />
+            <Divider
+              style={{ margin: '0.5rem 1.2rem' }}
+              orientation="vertical"
+              flexItem
+            />
             <AvatarMenu />
           </Box>
         </Toolbar>
