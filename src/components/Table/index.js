@@ -6,7 +6,7 @@ import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 import useStyles from './styles';
 
-const Table = ({ data }) => {
+const Table = ({ data = [] }) => {
   const classes = useStyles();
   const headings = (!!data.length && Object.keys(data[0])) || [];
 
