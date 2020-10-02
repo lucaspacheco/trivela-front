@@ -17,6 +17,7 @@ import MyPaymentsPage from 'pages/myPayments';
 import LeaguesPage from 'pages/leagues';
 import MyLeaguesPage from 'pages/myLeagues';
 import ContactUsPage from 'pages/contactUs';
+import LeaguePartialsPage from 'pages/leaguePartials';
 
 import theme from 'styles/theme';
 import api from 'services/api';
@@ -116,6 +117,11 @@ const App = () => {
           <PrivateRoute exact path="/leagues" component={LeaguesPage} />
           <PrivateRoute exact path="/my-leagues" component={MyLeaguesPage} />
           <PrivateRoute exact path="/contact-us" component={ContactUsPage} />
+          <PrivateRoute
+            exact
+            path="/league/:id/partials"
+            component={LeaguePartialsPage}
+          />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
         </Router>
