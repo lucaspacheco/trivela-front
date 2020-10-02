@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { Typography, Button } from '@material-ui/core';
 import { AddCircle as AddIcon } from '@material-ui/icons';
 import clsx from 'clsx';
@@ -9,6 +10,7 @@ import useStyles from './styles';
 
 const LeagueCard = ({ className, league }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <div className={clsx(classes.cardWrapper, className)}>
@@ -31,7 +33,16 @@ const LeagueCard = ({ className, league }) => {
               variant="contained"
               color="primary"
             >
-              <Typography variant="body1">Parciais</Typography>
+              <Typography
+                variant="body1"
+                onClick={() =>
+                  history.push(`/league/${league.id}/partials`, {
+                    leagueId: league.id,
+                  })
+                }
+              >
+                Parciais
+              </Typography>
             </Button>
           </>
         ) : (
@@ -61,6 +72,7 @@ const LeagueCard = ({ className, league }) => {
 LeagueCard.propTypes = {
   className: PropTypes.string,
   league: PropTypes.shape({
+    id: PropTypes.number,
     round: PropTypes.number,
     players: PropTypes.number,
     cashPrize: PropTypes.number,
