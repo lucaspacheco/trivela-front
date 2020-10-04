@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useMutation, ReactQueryCacheProvider, QueryCache } from 'react-query';
 import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
-import RQDT from 'react-query-devtools';
+import { ReactQueryDevtools } from 'react-query-devtools';
 
 import Notifications, { useNotify } from 'components/Notification';
 import FullSpinner from 'components/FullSpinner';
@@ -103,7 +103,7 @@ const App = () => {
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
       <MuiThemeProvider theme={theme}>
-        <RQDT.ReactQueryDevtools initialIsOpen />
+        <ReactQueryDevtools initialIsOpen />
 
         <CssBaseline />
         <Notifications />

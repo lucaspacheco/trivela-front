@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography, Paper } from '@material-ui/core';
-import RT from 'react-super-responsive-table';
+import {
+  Table as RTable,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+} from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 import useStyles from './styles';
@@ -12,34 +19,34 @@ const Table = ({ data = [] }) => {
 
   return data.length ? (
     <Paper elevation={3} className={classes.paper}>
-      <RT.Table className={classes.table}>
-        <RT.Thead>
-          <RT.Tr>
+      <RTable className={classes.table}>
+        <Thead>
+          <Tr>
             {headings.map((heading) => (
-              <RT.Th key={heading}>
+              <Th key={heading}>
                 <Typography variant="h6" className={classes.title}>
                   {heading}
                 </Typography>
-              </RT.Th>
+              </Th>
             ))}
-          </RT.Tr>
-        </RT.Thead>
-        <RT.Tbody>
+          </Tr>
+        </Thead>
+        <Tbody>
           {data.map((item) => (
-            <RT.Tr key={item[headings[0]]}>
+            <Tr key={item[headings[0]]}>
               {headings.map((head) => (
-                <RT.Td key={head}>
+                <Td key={head}>
                   {typeof item[head] === 'object' ? (
                     item[head]
                   ) : (
                     <Typography>{item[head]}</Typography>
                   )}
-                </RT.Td>
+                </Td>
               ))}
-            </RT.Tr>
+            </Tr>
           ))}
-        </RT.Tbody>
-      </RT.Table>
+        </Tbody>
+      </RTable>
     </Paper>
   ) : (
     <Typography variant="h6" className={classes.noItemsToShow}>
