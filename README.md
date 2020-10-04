@@ -14,9 +14,13 @@ yarn
 npm install
 ```
 
-3. Copy contents of file `src/services/mockoon-env.json` and import in Mockoon (Import/export Menu)
+3. Download and install [Mockoon](https://mockoon.com/) (for api mocking)
 
-4. Start server
+4. Copy contents of file `src/services/mockoon-env.json` and import in Mockoon (Import/export Menu)
+
+5. Start Mockoon environment on port 7001
+
+6. Start server
 ```sh
 yarn start
 # or with npm
