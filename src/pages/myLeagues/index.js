@@ -23,7 +23,7 @@ const MyLeagues = () => {
         <Table
           data={myLeagues.map((league) => ({
             ID: league.id,
-            Liga: `Rodada ${league.round}`,
+            Liga: league.label,
             Times: league.teams.map((team) => (
               <div
                 key={team.id}

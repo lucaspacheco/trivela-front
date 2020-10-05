@@ -38,7 +38,7 @@ const LeagueCard = ({ className, league }) => {
   return (
     <div className={clsx(classes.cardWrapper, className)}>
       <div className={classes.cardHeader}>
-        <Typography variant="h6">Rodada #{league.round}</Typography>
+        <Typography variant="h6">{league.label}</Typography>
       </div>
 
       <div className={classes.cardContent}>
@@ -100,6 +100,7 @@ LeagueCard.propTypes = {
   league: PropTypes.shape({
     id: PropTypes.number,
     round: PropTypes.number,
+    label: PropTypes.string,
     players: PropTypes.number,
     cashPrize: PropTypes.number,
     registrationClosed: PropTypes.bool,

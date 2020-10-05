@@ -163,7 +163,7 @@ const ShoppingCartModal = ({ open, handleClose }) => {
             <React.Fragment key={league.id}>
               <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>
-                  <Typography>Rodada #{league.round}</Typography>
+                  <Typography>{league.label}</Typography>
                   <div className={classes.price}>
                     <Typography>
                       {formatMoney(league.price * teams.length)}

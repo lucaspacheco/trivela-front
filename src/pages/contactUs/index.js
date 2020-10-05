@@ -126,7 +126,7 @@ const ContactUs = () => {
                 <Autocomplete
                   options={leagues}
                   getOptionLabel={(option) =>
-                    option.round ? `Rodada #${option.round}` : ''
+                    option.label ? option.label : ''
                   }
                   renderInput={(params) => (
                     <TextField

@@ -37,7 +37,7 @@ const LeaguePartials = () => {
             variant="h4"
             paragraph
           >
-            Rodada #{leaguePartials.round}
+            {leaguePartials.label}
           </Typography>
           <Table
             data={leaguePartials.teams?.map((item) => ({
