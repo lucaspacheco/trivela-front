@@ -1,20 +1,15 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 import AuthPageLayout from 'components/AuthPageLayout';
 import { CircularProgress, Typography } from '@material-ui/core';
 import LeagueCard from 'components/LeagueCard';
-import api from 'services/api';
+import { useHotLeagues } from 'queries/index';
 import useStyles from './styles';
 
 const Home = () => {
   const classes = useStyles();
-  const {
-    data: { data: { hotLeagues = [] } = {} } = {},
-    isFetching,
-  } = useQuery('hot-leagues', () => api.get('/hot-leagues'));
-
+  const { leagues, isFetching } = useHotLeagues();
   return (
     <AuthPageLayout>
       <Typography
@@ -31,7 +26,7 @@ const Home = () => {
         {isFetching && <CircularProgress size={32} />}
       </Typography>
 
-      {!hotLeagues.length && isFetching ? (
+      {!leagues.length && isFetching ? (
         <Skeleton
           variant="rect"
           animation="wave"
@@ -41,7 +36,7 @@ const Home = () => {
         />
       ) : (
         <div className={classes.cardsWrapper}>
-          {hotLeagues.map((league) => (
+          {leagues.map((league) => (
             <LeagueCard key={league.id} league={league} />
           ))}
         </div>

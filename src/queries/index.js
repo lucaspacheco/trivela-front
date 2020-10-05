@@ -28,6 +28,18 @@ export const useLeagues = () => {
   };
 };
 
+export const useHotLeagues = () => {
+  const {
+    data: { data: { leagues = [] } = {} } = {},
+    isFetching,
+  } = useQuery('hot-leagues', () => api.get('/hot-leagues'));
+
+  return {
+    leagues,
+    isFetching,
+  };
+};
+
 export const useMyPayments = () => {
   const {
     data: { data: { payments = [] } = {} } = {},
