@@ -1,406 +1,406 @@
 {
   "source": "mockoon:1.8.0",
   "data": [
-    {
-      "type": "environment",
-      "item": {
-        "uuid": "",
-        "lastMigration": 10,
-        "name": "Trivela",
-        "endpointPrefix": "",
-        "latency": 1000,
-        "port": 7001,
-        "routes": [
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "post",
-            "endpoint": "login",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\"\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+      {
+          "type": "environment",
+          "item": {
+              "uuid": "",
+              "lastMigration": 10,
+              "name": "Trivela",
+              "endpointPrefix": "",
+              "latency": 1000,
+              "port": 7001,
+              "routes": [
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "post",
-            "endpoint": "signup",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\"\n}",
-                "latency": 0,
-                "statusCode": "201",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "post",
+                      "endpoint": "login",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\"\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "refresh-token",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"oi token123\"\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "post",
+                      "endpoint": "signup",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\"\n}",
+                              "latency": 0,
+                              "statusCode": "201",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "post",
-            "endpoint": "forgot-password",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"emailSent\": true,\n  \"errorMessage\": \"E-mail inválido\"\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "get",
+                      "endpoint": "refresh-token",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"oi token123\"\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "post",
-            "endpoint": "update-profile",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"name\": \"Luiz Felipe Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\",\n  \"errorMessage\": \"deu um erro aqui\"\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "post",
+                      "endpoint": "forgot-password",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"emailSent\": true,\n  \"errorMessage\": \"E-mail inválido\"\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "my-teams",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"teams\": [\n    {\n      \"id\": 1,\n      \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n      \"name\": \"Charlie Brown 013\",\n      \"cartolaName\": \"Luiz Felicio\"\n    },\n    {\n      \"id\": 2,\n      \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n      \"name\": \"Time Teste\",\n      \"cartolaName\": \"Cartoleiro Felicio\"\n    }\n  ]\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "post",
+                      "endpoint": "update-profile",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"name\": \"Luiz Felipe Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\",\n  \"errorMessage\": \"deu um erro aqui\"\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "leagues",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"leagues\": [\n    {\n      \"id\": 1,\n      \"round\": 7,\n      \"players\": 999,\n      \"cashPrize\": 314288,\n      \"price\": 10,\n      \"registrationClosed\": true\n    },\n    {\n      \"id\": 2,\n      \"round\": 8,\n      \"players\": 15,\n      \"cashPrize\": 100,\n      \"price\": 30,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-11-13T11:30:20.379Z\"\n    },\n    {\n      \"id\": 23,\n      \"round\": 15,\n      \"players\": 12345,\n      \"cashPrize\": 1540,\n      \"price\": 15,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\"\n    },\n    {\n      \"id\": 223,\n      \"round\": 12,\n      \"players\": 5123,\n      \"cashPrize\": 70000,\n      \"price\": 50,\n      \"registrationClosed\": true,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\"\n    },\n    {\n      \"id\": 224,\n      \"round\": 24,\n      \"players\": 10,\n      \"cashPrize\": 1000000,\n      \"price\": 150,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\"\n    }\n  ]\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "get",
+                      "endpoint": "my-teams",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"teams\": [\n    {\n      \"id\": 1,\n      \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n      \"name\": \"Charlie Brown 013\",\n      \"cartolaName\": \"Luiz Felicio\"\n    },\n    {\n      \"id\": 2,\n      \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n      \"name\": \"Time Teste\",\n      \"cartolaName\": \"Cartoleiro Felicio\"\n    }\n  ]\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "hot-leagues",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"hotLeagues\": [\n    {\n      \"id\": 1,\n      \"round\": 7,\n      \"players\": 999,\n      \"cashPrize\": 314288,\n      \"price\": 10,\n      \"registrationClosed\": true\n    },\n    {\n      \"id\": 2,\n      \"round\": 8,\n      \"players\": 15,\n      \"cashPrize\": 100,\n      \"price\": 30,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-11-13T11:30:20.379Z\"\n    },\n    {\n      \"id\": 23,\n      \"round\": 15,\n      \"players\": 12345,\n      \"cashPrize\": 1540,\n      \"price\": 15,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\"\n    },\n    {\n      \"id\": 223,\n      \"round\": 12,\n      \"players\": 5123,\n      \"cashPrize\": 70000,\n      \"price\": 50,\n      \"registrationClosed\": true,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\"\n    },\n    {\n      \"id\": 224,\n      \"round\": 24,\n      \"players\": 10,\n      \"cashPrize\": 1000000,\n      \"price\": 150,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\"\n    }\n  ]\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "get",
+                      "endpoint": "leagues",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"leagues\": [\n    {\n      \"id\": 1,\n      \"round\": 7,\n      \"players\": 999,\n      \"cashPrize\": 314288,\n      \"price\": 10,\n      \"registrationClosed\": true,\n      \"label\": \"Rodada #7\"\n    },\n    {\n      \"id\": 2,\n      \"round\": 8,\n      \"players\": 15,\n      \"cashPrize\": 100,\n      \"price\": 30,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-11-13T11:30:20.379Z\",\n      \"label\": \"Rodada #8\"\n    },\n    {\n      \"id\": 23,\n      \"round\": 15,\n      \"players\": 12345,\n      \"cashPrize\": 1540,\n      \"price\": 15,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\",\n      \"label\": \"Rodada #15\"\n    },\n    {\n      \"id\": 223,\n      \"round\": 12,\n      \"players\": 5123,\n      \"cashPrize\": 70000,\n      \"price\": 50,\n      \"registrationClosed\": true,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\",\n      \"label\": \"Rodada #12\"\n    },\n    {\n      \"id\": 224,\n      \"round\": 24,\n      \"players\": 10,\n      \"cashPrize\": 1000000,\n      \"price\": 150,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\",\n      \"label\": \"Rodada #24\"\n    }\n  ]\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "my-payments",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"payments\": [\n    {\n      \"id\": \"1\",\n      \"value\": 150,\n      \"processingDate\": \"2020-09-30T12:36:38.086Z\",\n      \"method\": \"Mercado Pago\",\n      \"status\": \"OK\"\n    },\n    {\n      \"id\": \"2\",\n      \"value\": 50,\n      \"processingDate\": \"2020-08-15T12:36:38.086Z\",\n      \"method\": \"GalaxPay\",\n      \"status\": \"OK\"\n    },\n    {\n      \"id\": \"3\",\n      \"value\": 10,\n      \"processingDate\": \"2020-04-12T12:36:38.086Z\",\n      \"method\": \"Depósito\",\n      \"status\": \"Cancelado\"\n    }\n  ]\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "get",
+                      "endpoint": "hot-leagues",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"leagues\": [\n    {\n      \"id\": 1,\n      \"round\": 7,\n      \"players\": 999,\n      \"cashPrize\": 314288,\n      \"price\": 10,\n      \"registrationClosed\": true,\n      \"label\": \"Rodada #7\"\n    },\n    {\n      \"id\": 2,\n      \"round\": 8,\n      \"players\": 15,\n      \"cashPrize\": 100,\n      \"price\": 30,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-11-13T11:30:20.379Z\",\n      \"label\": \"Rodada #8\"\n    },\n    {\n      \"id\": 23,\n      \"round\": 15,\n      \"players\": 12345,\n      \"cashPrize\": 1540,\n      \"price\": 15,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\",\n      \"label\": \"Rodada #15\"\n    },\n    {\n      \"id\": 223,\n      \"round\": 12,\n      \"players\": 5123,\n      \"cashPrize\": 70000,\n      \"price\": 50,\n      \"registrationClosed\": true,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\",\n      \"label\": \"Rodada #12\"\n    },\n    {\n      \"id\": 224,\n      \"round\": 24,\n      \"players\": 10,\n      \"cashPrize\": 1000000,\n      \"price\": 150,\n      \"registrationClosed\": false,\n      \"registrationLimit\": \"2020-10-13T15:30:20.379Z\",\n      \"label\": \"Rodada #24\"\n    }\n  ]\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "post",
-            "endpoint": "contact-form",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n    \"ok\": \"true\",\n    \"errorMessage\": \"ocorreu um problea no servidor\"\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "get",
+                      "endpoint": "my-payments",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"payments\": [\n    {\n      \"id\": \"1\",\n      \"value\": 150,\n      \"processingDate\": \"2020-09-30T12:36:38.086Z\",\n      \"method\": \"Mercado Pago\",\n      \"status\": \"OK\"\n    },\n    {\n      \"id\": \"2\",\n      \"value\": 50,\n      \"processingDate\": \"2020-08-15T12:36:38.086Z\",\n      \"method\": \"GalaxPay\",\n      \"status\": \"OK\"\n    },\n    {\n      \"id\": \"3\",\n      \"value\": 10,\n      \"processingDate\": \"2020-04-12T12:36:38.086Z\",\n      \"method\": \"Depósito\",\n      \"status\": \"Cancelado\"\n    }\n  ]\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "contact-options",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"options\": [\n    {\n      \"id\": \"1\",\n      \"value\": \"team-not-added\",\n      \"description\": \"Meu time não foi adicionado à liga\"\n    },\n    {\n      \"id\": \"2\",\n      \"value\": \"payment-not-processed\",\n      \"description\": \"Meu pagamento não foi processado\"\n    }\n  ]\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "post",
+                      "endpoint": "contact-form",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n    \"ok\": \"true\",\n    \"errorMessage\": \"ocorreu um problea no servidor\"\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "my-leagues",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"myLeagues\": [\n    {\n      \"id\": \"1\",\n      \"round\": \"5\",\n      \"teams\": [\n        {\n          \"id\": \"1\",\n          \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n          \"name\": \"Charlie Brown 013\",\n          \"cartolaName\": \"Luiz Felicio\"\n        },\n        {\n          \"id\": \"2\",\n          \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n          \"name\": \"Timão\",\n          \"cartolaName\": \"Luiz Felicio\"\n        }\n      ]\n    },\n        {\n      \"id\": \"2\",\n      \"round\": \"10\",\n      \"teams\": [\n        {\n          \"id\": \"1\",\n          \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n          \"name\": \"Time Brasileiro\",\n          \"cartolaName\": \"Luiz Felicio\"\n        },\n        {\n          \"id\": \"2\",\n          \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n          \"name\": \"Alo Brasil\",\n          \"cartolaName\": \"Luiz Felicio\"\n        }\n      ]\n    }\n  ]\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "get",
+                      "endpoint": "contact-options",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"options\": [\n    {\n      \"id\": \"1\",\n      \"value\": \"team-not-added\",\n      \"description\": \"Meu time não foi adicionado à liga\"\n    },\n    {\n      \"id\": \"2\",\n      \"value\": \"payment-not-processed\",\n      \"description\": \"Meu pagamento não foi processado\"\n    }\n  ]\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "post",
-            "endpoint": "create-team",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n    \"ok\": \"true\",\n    \"errorMessage\": \"Seu time já existe.\"\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "get",
+                      "endpoint": "my-leagues",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"myLeagues\": [\n    {\n      \"id\": \"1\",\n      \"round\": \"5\",\n      \"label\": \"Rodada #5\"\n      \"teams\": [\n        {\n          \"id\": \"1\",\n          \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n          \"name\": \"Charlie Brown 013\",\n          \"cartolaName\": \"Luiz Felicio\"\n        },\n        {\n          \"id\": \"2\",\n          \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n          \"name\": \"Timão\",\n          \"cartolaName\": \"Luiz Felicio\"\n        }\n      ]\n    },\n        {\n      \"id\": \"2\",\n      \"round\": \"10\",\n      \"label\": \"Rodada #10\",\n      \"teams\": [\n        {\n          \"id\": \"1\",\n          \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n          \"name\": \"Time Brasileiro\",\n          \"cartolaName\": \"Luiz Felicio\"\n        },\n        {\n          \"id\": \"2\",\n          \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n          \"name\": \"Alo Brasil\",\n          \"cartolaName\": \"Luiz Felicio\"\n        }\n      ]\n    }\n  ]\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
-                  }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              },
-              {
-                "uuid": "",
-                "body": "{}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "post",
+                      "endpoint": "create-team",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n    \"ok\": \"true\",\n    \"errorMessage\": \"Seu time já existe.\"\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          },
+                          {
+                              "uuid": "",
+                              "body": "{}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
+                  },
                   {
-                    "key": "",
-                    "value": ""
+                      "uuid": "",
+                      "documentation": "",
+                      "method": "get",
+                      "endpoint": "league-partials/:id",
+                      "responses": [
+                          {
+                              "uuid": "",
+                              "body": "{\n  \"leaguePartials\": {\n    \"id\": 1,\n    \"round\": \"12\",\n    \"label\": \"Rodada #12\",\n    \"teams\": [\n      {\n        \"position\": \"1\",\n        \"name\": \"Santos\",\n        \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n        \"cartolaName\": \"Cartoleiro\",\n        \"score\": \"125\"\n      },\n      {\n        \"position\": \"2\",\n        \"name\": \"Sao Paulo\",\n        \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n        \"cartolaName\": \"SP\",\n        \"score\": \"100\"\n      },\n      {\n        \"position\": \"3\",\n        \"name\": \"Palmeiras\",\n        \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n        \"cartolaName\": \"ABC\",\n        \"score\": \"95\"\n      }\n    ]\n  }\n}",
+                              "latency": 0,
+                              "statusCode": "200",
+                              "label": "",
+                              "headers": [
+                                  {
+                                      "key": "",
+                                      "value": ""
+                                  }
+                              ],
+                              "filePath": "",
+                              "sendFileAsBody": false,
+                              "rules": []
+                          }
+                      ],
+                      "enabled": true
                   }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
-          },
-          {
-            "uuid": "",
-            "documentation": "",
-            "method": "get",
-            "endpoint": "league-partials/:id",
-            "responses": [
-              {
-                "uuid": "",
-                "body": "{\n  \"leaguePartials\": {\n    \"id\": 1,\n    \"round\": \"12\",\n    \"teams\": [\n      {\n        \"position\": \"1\",\n        \"name\": \"Santos\",\n        \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n        \"cartolaName\": \"Cartoleiro\",\n        \"score\": \"125\"\n      },\n      {\n        \"position\": \"2\",\n        \"name\": \"Sao Paulo\",\n        \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n        \"cartolaName\": \"SP\",\n        \"score\": \"100\"\n      },\n      {\n        \"position\": \"3\",\n        \"name\": \"Palmeiras\",\n        \"imageUrl\": \"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_180/escudo/ec/48/29/00815b3105-45b5-4f59-a52d-22b9e18593ec20200921124829\",\n        \"cartolaName\": \"ABC\",\n        \"score\": \"95\"\n      }\n    ]\n  }\n}",
-                "latency": 0,
-                "statusCode": "200",
-                "label": "",
-                "headers": [
+              ],
+              "proxyMode": false,
+              "proxyHost": "",
+              "https": false,
+              "cors": true,
+              "headers": [
                   {
-                    "key": "",
-                    "value": ""
+                      "key": "Content-Type",
+                      "value": "application/json"
                   }
-                ],
-                "filePath": "",
-                "sendFileAsBody": false,
-                "rules": []
-              }
-            ],
-            "enabled": true
+              ],
+              "proxyReqHeaders": [
+                  {
+                      "key": "",
+                      "value": ""
+                  }
+              ],
+              "proxyResHeaders": [
+                  {
+                      "key": "",
+                      "value": ""
+                  }
+              ]
           }
-        ],
-        "proxyMode": false,
-        "proxyHost": "",
-        "https": false,
-        "cors": true,
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "proxyReqHeaders": [
-          {
-            "key": "",
-            "value": ""
-          }
-        ],
-        "proxyResHeaders": [
-          {
-            "key": "",
-            "value": ""
-          }
-        ]
       }
-    }
   ]
 }
