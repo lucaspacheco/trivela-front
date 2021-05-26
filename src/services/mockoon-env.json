@@ -19,7 +19,7 @@
                       "responses": [
                           {
                               "uuid": "",
-                              "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\"\n}",
+                              "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"phone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\"\n}",
                               "latency": 0,
                               "statusCode": "200",
                               "label": "",
@@ -44,7 +44,7 @@
                       "responses": [
                           {
                               "uuid": "",
-                              "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\"\n}",
+                              "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"phone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\"\n}",
                               "latency": 0,
                               "statusCode": "201",
                               "label": "",
@@ -69,7 +69,7 @@
                       "responses": [
                           {
                               "uuid": "",
-                              "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"oi token123\"\n}",
+                              "body": "{\n  \"name\": \"Luiz Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"phone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"oi token123\"\n}",
                               "latency": 0,
                               "statusCode": "200",
                               "label": "",
@@ -119,7 +119,7 @@
                       "responses": [
                           {
                               "uuid": "",
-                              "body": "{\n  \"name\": \"Luiz Felipe Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"cellPhone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\",\n  \"errorMessage\": \"deu um erro aqui\"\n}",
+                              "body": "{\n  \"name\": \"Luiz Felipe Felicio\",\n  \"cpf\": \"012.345.678-90\",\n  \"phone\": \"(13) 12345-6789\",\n  \"email\": \"teste@teste.com\",\n  \"token\": \"meu token\",\n  \"errorMessage\": \"deu um erro aqui\"\n}",
                               "latency": 0,
                               "statusCode": "200",
                               "label": "",

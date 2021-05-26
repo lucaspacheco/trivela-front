@@ -9,21 +9,21 @@ export default create((set) => ({
       token: getCookie("trivela_dtoken")
     },
     isAuthenticated: false,
-    setUserInfo: (userInfo) => {
-      set({ userInfo });
-      setCookie("trivela_token", userInfo.token);
+    setUserInfo: (data) => {
+      set({ userInfo: data.user });
+      setCookie("trivela_token", data.auth.token);
     },
     login: (data) => {
-      set({ userInfo: data, isAuthenticated: true });
+      set({ userInfo: data.user, isAuthenticated: true });
       deleteCookie("trivela_dtoken");
       setCookie("trivela_token", data.auth.token);
     },
     loginDevice: (data) => {
-      set({ device: data, isAuthenticated: true });
+      set({ deviceInfo: data.device, isAuthenticated: true });
       setCookie("trivela_dtoken", data.auth.token);
     },
     logout: () => {
-      set({ userInfo: {}, isAuthenticated: false });
+      set({ userInfo: {}, device: {}, isAuthenticated: false });
       deleteCookies();
     }
   })

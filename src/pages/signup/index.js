@@ -22,7 +22,7 @@ import TextInput from "components/TextInput";
 
 import api from "services/api";
 import useStyles from "./styles";
-import { cellPhoneRegex, tokenRegex, validationMessages } from "../../utils/consts";
+import { phoneRegex, tokenRegex, validationMessages } from "../../utils/consts";
 
 
 const PreSign = ({ setDevice }) => {
@@ -31,7 +31,7 @@ const PreSign = ({ setDevice }) => {
     const validationSchema = Yup.object().shape({
       number: Yup.string()
         .required(validationMessages.required)
-        .matches(cellPhoneRegex, validationMessages.invalidField("Celular"))
+        .matches(phoneRegex, validationMessages.invalidField("Celular"))
     });
 
     const [
@@ -80,15 +80,15 @@ const PreSign = ({ setDevice }) => {
     return (
       <form className={classes.form} onSubmit={handleSubmit} noValidate>
         <TextInput
-          autoComplete="cellPhone"
+          autoComplete="phone"
           className={classes.input}
           error={errors.number}
           inputComponent={IMaskInput}
           inputProps={{
             mask:
               values.number.length > 14
-                ? "(00) 00000-0000"
-                : "(00) 0000-0000[0]",
+                ? "+55 (00) 00000-0000"
+                : "+55 (00) 0000-0000[0]",
             onAccept: (value) =>
               handleChange({ target: { name: "number", value } })
           }}

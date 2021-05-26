@@ -47,7 +47,7 @@ const Signup = () => {
       name: '',
       cpf: '',
       cartolaTeam: null,
-      cellPhone: '',
+      phone: '',
       email: '',
       confirmEmail: '',
       password: '',
@@ -126,28 +126,28 @@ const Signup = () => {
           />
 
           <TextInput
-            autoComplete="cellPhone"
+            autoComplete="phone"
             className={classes.input}
-            error={errors.cellPhone}
+            error={errors.phone}
             inputComponent={IMaskInput}
             inputProps={{
               mask:
-                values.cellPhone.length > 14
+                values.phone.length > 14
                   ? '(00) 00000-0000'
                   : '(00) 0000-0000[0]',
               onAccept: (value) =>
-                handleChange({ target: { name: 'cellPhone', value } }),
+                handleChange({ target: { name: 'phone', value } }),
             }}
             margin="dense"
-            name="cellPhone"
+            name="phone"
             onChange={handleChange}
             label="Celular"
             placeholder="Digite seu celular"
             startAdornment={
-              <PhoneIphoneIcon color={errors.cellPhone ? 'error' : 'inherit'} />
+              <PhoneIphoneIcon color={errors.phone ? 'error' : 'inherit'} />
             }
             variant="outlined"
-            value={values.cellPhone}
+            value={values.phone}
             fullWidth
             required
           />

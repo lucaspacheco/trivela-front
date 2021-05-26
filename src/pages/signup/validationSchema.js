@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { isValidCPF } from 'utils/helpers';
 import {
   validationMessages,
-  cellPhoneRegex,
+  phoneRegex,
   passwordRegex,
 } from 'utils/consts';
 
@@ -15,9 +15,9 @@ export default Yup.object().shape({
       isValidCPF(value),
     ),
   cartolaTeam: Yup.object().nullable().required(validationMessages.required),
-  cellPhone: Yup.string()
+  phone: Yup.string()
     .required(validationMessages.required)
-    .matches(cellPhoneRegex, validationMessages.invalidField('Celular')),
+    .matches(phoneRegex, validationMessages.invalidField('Celular')),
   email: Yup.string()
     .required(validationMessages.required)
     .email(validationMessages.invalidField('E-mail')),
