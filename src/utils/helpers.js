@@ -6,7 +6,7 @@
  * @returns {string}
  */
 export const getCookie = (cname) => {
-  if (typeof document === 'undefined') {
+  if (typeof document === "undefined") {
     return null;
   }
 
@@ -14,7 +14,7 @@ export const getCookie = (cname) => {
   const parts = value.split(`; ${cname}=`);
 
   if (parts.length === 2) {
-    return parts.pop().split(';').shift();
+    return parts.pop().split(";").shift();
   }
 
   return null;
@@ -30,7 +30,7 @@ export const getCookie = (cname) => {
  * @returns {string} Cookie definition string.
  */
 export const setCookie = (cname, cvalue, exdays = 4) => {
-  if (typeof document === 'undefined') {
+  if (typeof document === "undefined") {
     return null;
   }
 
@@ -38,11 +38,48 @@ export const setCookie = (cname, cvalue, exdays = 4) => {
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
   const expires = `expires=${d.toGMTString()}`;
 
-  const cookieDefinition = `${cname}=${cvalue || ''};${expires};path=/`;
+  const cookieDefinition = `${cname}=${cvalue || ""};${expires};path=/`;
 
   document.cookie = cookieDefinition;
 
   return cookieDefinition;
+};
+
+/**
+ * Sets a cookie
+ *
+ * @param {string} cname Cookie name.
+ * @param {string} cvalue Cookie value.
+ * @param {number} exdays Number of days before expiring.
+ *
+ * @returns {string} Cookie definition string.
+ */
+export const deleteCookie = (cname) => {
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  const cookieDefinition = `${cname}=${cvalue || ""};${new Date().toUTCString()};path=/`;
+
+  document.cookie = cookieDefinition;
+};
+/**
+ * Delete all cookies
+ *
+ *
+ * @returns {string} Cookie definition string.
+ */
+export const deleteCookies = () => {
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  document.cookie.split(";").forEach((c) => {
+    document.cookie = c
+      .replace(/^ +/, "")
+      .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+  });
+
 };
 
 /**
@@ -52,7 +89,7 @@ export const setCookie = (cname, cvalue, exdays = 4) => {
  *
  * @returns {boolean} True if CPF is valid, false otherwise.
  */
-export const isValidCPF = (CPF = '') => {
+export const isValidCPF = (CPF = "") => {
   if (
     CPF.length !== 14 ||
     !Array.from(CPF).filter((e) => e !== CPF[0]).length
@@ -60,7 +97,7 @@ export const isValidCPF = (CPF = '') => {
     return false;
   }
 
-  const internalCPF = CPF.replace(/[\s.-]*/gim, '');
+  const internalCPF = CPF.replace(/[\s.-]*/gim, "");
 
   let sum = 0;
   let rest;
@@ -87,10 +124,10 @@ export const isValidCPF = (CPF = '') => {
  */
 export const formatMoney = (value) => {
   return String(
-    new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(value),
+    new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    }).format(value)
   ).replace(String.fromCharCode(160), String.fromCharCode(32));
 };
 
@@ -101,7 +138,7 @@ export const formatMoney = (value) => {
  * @returns {string}
  */
 export const dateToString = (date) => {
-  if (!date) return '';
+  if (!date) return "";
   const jsDate = new Date(date);
 
   const day = jsDate.getDate();

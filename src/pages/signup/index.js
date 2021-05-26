@@ -139,7 +139,7 @@ const ValidateToken = ({ device }) => {
     const classes = useStyles();
     const [message, setMessage] = useState();
     const history = useHistory();
-    const login = useAppStore((state) => state.login);
+    const loginDevice = useAppStore((state) => state.loginDevice);
 
     const validationSchema = Yup.object().shape({
       token: Yup.string()
@@ -159,12 +159,13 @@ const ValidateToken = ({ device }) => {
       ,
       {
         onSuccess: ({ data }) => {
-          console.log(data);
-          login(data);
+          loginDevice(data);
           history.push("/profile");
         },
         onError: (error, variables, snapshotValue) => {
-          console.log(Object.keys(error));
+          if(error.response.status === 404) setMessage(<>Código errado! Verifique ou <Link component={RouterLink} to="/login">
+            recomece
+          </Link></>)
         }
       }
     );
