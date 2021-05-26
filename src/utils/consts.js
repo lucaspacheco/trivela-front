@@ -8,3 +8,4 @@ export const validationMessages = {
 export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()+=_\\/])(?=.{8,})/g;
 
 export const cellPhoneRegex = /\(\d{2}\)\s\d{4,5}-\d{4}/g;
+export const tokenRegex = /\d{5}/g;

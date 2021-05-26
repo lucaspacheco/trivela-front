@@ -14,7 +14,8 @@ module.exports = {
   install: ['@material-ui/icons', 'react-query-devtools'],
   // Mockoon Proxy
   proxy: {
-    '/api': 'http://0.0.0.0:7001/',
+    //'/api': 'http://0.0.0.0:7001/',
+    '/api': 'http://localhost:3000/',
     '/cartola': 'https://api.cartolafc.globo.com/times',
   },
 };

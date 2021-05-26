@@ -1,67 +1,249 @@
-import React from 'react';
+import * as Yup from "yup";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Paper,
   Button,
   Typography,
   Link,
-  CircularProgress,
-} from '@material-ui/core';
-import { Link as RouterLink, useHistory } from 'react-router-dom';
-import { useMutation } from 'react-query';
+  CircularProgress
+} from "@material-ui/core";
+import { Link as RouterLink, useHistory } from "react-router-dom";
+import { useMutation } from "react-query";
 import {
-  PersonOutlineOutlined as PersonOutlineIcon,
-  EmailOutlined as EmailOutlinedIcon,
-  LockOutlined as LockOutlinedIcon,
-  BrandingWatermarkOutlined as BrandingWatermarkOutlinedIcon,
   PhoneIphone as PhoneIphoneIcon,
-} from '@material-ui/icons';
-import { useFormik } from 'formik';
-import { IMaskInput } from 'react-imask';
+  SecurityOutlined as CodeIcon
+} from "@material-ui/icons";
+import { useFormik } from "formik";
+import { IMaskInput } from "react-imask";
 
-import useAppStore from 'components/App/store';
-import TextInput from 'components/TextInput';
+import useAppStore from "components/App/store";
+import TextInput from "components/TextInput";
 
-import api from 'services/api';
-import AutoComplete from 'components/CartolaSearchBox';
-import useStyles from './styles';
-import validationSchema from './validationSchema';
+import api from "services/api";
+import useStyles from "./styles";
+import { cellPhoneRegex, tokenRegex, validationMessages } from "../../utils/consts";
 
+
+const PreSign = ({ setDevice }) => {
+    const classes = useStyles();
+    const [message, setMessage] = useState();
+    const validationSchema = Yup.object().shape({
+      number: Yup.string()
+        .required(validationMessages.required)
+        .matches(cellPhoneRegex, validationMessages.invalidField("Celular"))
+    });
+
+    const [
+      signDevice,
+      { isLoading, reset: resetMutation, error: mutationError }
+    ] = useMutation(
+      (formValues) =>
+        api.post("/devices", {
+          number: `+55${formValues.number.replace(/\D/g, "")}`
+        }),
+      {
+        onMutate: ()=>{
+          setMessage()
+        },
+        onSuccess: ({ data }) => {
+          setDevice(data);
+        },
+        onError: (error, variables, snapshotValue) => {
+          if(error.response.status === 409) setMessage(<>Se você já se registrou <Link component={RouterLink} to="/login">
+            Faça login!
+          </Link></>)
+        }
+      }
+    );
+
+    const { values, handleSubmit, errors, setFieldValue } = useFormik({
+      initialValues: {
+        number: ""
+      },
+      validationSchema,
+      validateOnChange: false,
+      onSubmit: (formValues) => {
+        signDevice({ ...formValues });
+      }
+    });
+
+    const handleChange = ({ target: { name, value } }) =>
+      setFieldValue(name, value);
+
+    useEffect(() => {
+      if (mutationError && !message) {
+        setMessage(mutationError.message);
+      }
+    }, [mutationError]);
+
+    return (
+      <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        <TextInput
+          autoComplete="cellPhone"
+          className={classes.input}
+          error={errors.number}
+          inputComponent={IMaskInput}
+          inputProps={{
+            mask:
+              values.number.length > 14
+                ? "(00) 00000-0000"
+                : "(00) 0000-0000[0]",
+            onAccept: (value) =>
+              handleChange({ target: { name: "number", value } })
+          }}
+          margin="dense"
+          name="number"
+          onChange={handleChange}
+          label="Celular"
+          placeholder="Digite seu celular"
+          startAdornment={
+            <PhoneIphoneIcon color={errors.number ? "error" : "inherit"} />
+          }
+          variant="outlined"
+          value={values.number}
+          fullWidth
+          required
+        />
+        <Typography color={"primary"} align={"center"}><small>informe o celular para receber seu codigo de
+          acesso</small></Typography>
+
+        {message && (
+          <Typography color="error" className={classes.mutationErrorMessage}>
+            {message}
+          </Typography>
+        )}
+
+        <Button
+          className={classes.button}
+          color="primary"
+          variant="contained"
+          type="submit"
+          disabled={isLoading}
+          fullWidth
+          onClick={mutationError ? resetMutation : null}
+        >
+          Receber
+          {isLoading && (
+            <CircularProgress
+              size="3.2rem"
+              style={{ position: "absolute" }}
+            />
+          )}
+        </Button>
+      </form>
+    );
+  }
+;
+const ValidateToken = ({ device }) => {
+    const classes = useStyles();
+    const [message, setMessage] = useState();
+    const history = useHistory();
+    const login = useAppStore((state) => state.login);
+
+    const validationSchema = Yup.object().shape({
+      token: Yup.string()
+        .required(validationMessages.required)
+        .matches(tokenRegex, validationMessages.invalidField("Token"))
+    });
+
+    const [
+      signUp,
+      { isLoading, reset: resetMutation, error: mutationError }
+    ] = useMutation(
+      (formValues) =>
+        api.post("/auth/validate-device", {
+          validationCode: formValues.token,
+          deviceId: device.id
+        })
+      ,
+      {
+        onSuccess: ({ data }) => {
+          console.log(data);
+          login(data);
+          history.push("/profile");
+        },
+        onError: (error, variables, snapshotValue) => {
+          console.log(Object.keys(error));
+        }
+      }
+    );
+
+    const { values, handleSubmit, errors, setFieldValue } = useFormik({
+      initialValues: {
+        token: ""
+      },
+      validationSchema,
+      validateOnChange: false,
+      onSubmit: (formValues) => {
+        signUp({ ...formValues });
+      }
+    });
+
+    const handleChange = ({ target: { name, value } }) =>
+      setFieldValue(name, value);
+
+    useEffect(() => {
+      if (mutationError) {
+        setMessage(mutationError.message);
+      }
+    }, [mutationError]);
+
+    return (
+      <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        <TextInput
+          className={classes.input}
+          error={errors.token}
+          inputComponent={IMaskInput}
+          inputProps={{
+            mask: "00000",
+            onAccept: (value) =>
+              handleChange({ target: { name: "token", value } })
+          }}
+          margin="dense"
+          name="token"
+          onChange={handleChange}
+          label="Token"
+          placeholder="Código enviado por SMS"
+          startAdornment={
+            <PhoneIphoneIcon color={errors.token ? "error" : "inherit"} />
+          }
+          variant="outlined"
+          value={values.token}
+          fullWidth
+          required
+        />
+
+        {message && (
+          <Typography color="error" className={classes.mutationErrorMessage}>
+            {message}
+          </Typography>
+        )}
+
+        <Button
+          className={classes.button}
+          color="primary"
+          variant="contained"
+          type="submit"
+          disabled={isLoading}
+          fullWidth
+          onClick={mutationError ? resetMutation : null}
+        >
+          Validar
+          {isLoading && (
+            <CircularProgress
+              size="3.2rem"
+              style={{ position: "absolute" }}
+            />
+          )}
+        </Button>
+      </form>
+    );
+  }
+;
 const Signup = () => {
   const classes = useStyles();
-  const history = useHistory();
-  const login = useAppStore((state) => state.login);
-
-  const [
-    signUp,
-    { isLoading, reset: resetMutation, error: mutationError },
-  ] = useMutation((formValues) => api.post('/signup', { ...formValues }), {
-    onSuccess: ({ data }) => {
-      history.push('/');
-      login(data);
-    },
-  });
-
-  const { values, handleSubmit, errors, setFieldValue } = useFormik({
-    initialValues: {
-      name: '',
-      cpf: '',
-      cartolaTeam: null,
-      cellPhone: '',
-      email: '',
-      confirmEmail: '',
-      password: '',
-      confirmPassword: '',
-    },
-    validationSchema,
-    validateOnChange: false,
-    onSubmit: (formValues) => {
-      signUp({ ...formValues });
-    },
-  });
-
-  const handleChange = ({ target: { name, value } }) =>
-    setFieldValue(name, value);
+  const [device, setDevice] = useState();
 
   return (
     <Box
@@ -73,198 +255,21 @@ const Signup = () => {
       paddingY="2.4rem"
       className={classes.box}
     >
-      <form className={classes.form} onSubmit={handleSubmit} noValidate>
-        <Paper elevation={2} className={classes.paper}>
-          <TextInput
-            autoComplete="name"
-            className={classes.input}
-            error={errors.name}
-            margin="dense"
-            name="name"
-            onChange={handleChange}
-            label="Nome"
-            placeholder="Digite seu nome"
-            startAdornment={
-              <PersonOutlineIcon color={errors.name ? 'error' : 'inherit'} />
-            }
-            variant="outlined"
-            value={values.name}
-            fullWidth
-            required
-          />
-
-          <TextInput
-            autoComplete="cpf"
-            className={classes.input}
-            error={errors.cpf}
-            inputComponent={IMaskInput}
-            inputProps={{
-              mask: '000.000.000-00',
-              onAccept: (value) =>
-                handleChange({ target: { name: 'cpf', value } }),
-            }}
-            margin="dense"
-            name="cpf"
-            onChange={handleChange}
-            label="CPF"
-            placeholder="Digite seu CPF"
-            startAdornment={
-              <BrandingWatermarkOutlinedIcon
-                color={errors.cpf ? 'error' : 'inherit'}
-              />
-            }
-            variant="outlined"
-            value={values.cpf}
-            fullWidth
-            required
-          />
-
-          <AutoComplete
-            className={classes.input}
-            error={errors.cartolaTeam}
-            onOptionChange={(option) => setFieldValue('cartolaTeam', option)}
-          />
-
-          <TextInput
-            autoComplete="cellPhone"
-            className={classes.input}
-            error={errors.cellPhone}
-            inputComponent={IMaskInput}
-            inputProps={{
-              mask:
-                values.cellPhone.length > 14
-                  ? '(00) 00000-0000'
-                  : '(00) 0000-0000[0]',
-              onAccept: (value) =>
-                handleChange({ target: { name: 'cellPhone', value } }),
-            }}
-            margin="dense"
-            name="cellPhone"
-            onChange={handleChange}
-            label="Celular"
-            placeholder="Digite seu celular"
-            startAdornment={
-              <PhoneIphoneIcon color={errors.cellPhone ? 'error' : 'inherit'} />
-            }
-            variant="outlined"
-            value={values.cellPhone}
-            fullWidth
-            required
-          />
-
-          <TextInput
-            autoComplete="email"
-            className={classes.input}
-            error={errors.email}
-            margin="dense"
-            name="email"
-            onChange={handleChange}
-            label="E-mail"
-            placeholder="Digite seu e-mail"
-            startAdornment={
-              <EmailOutlinedIcon color={errors.email ? 'error' : 'inherit'} />
-            }
-            type="email"
-            variant="outlined"
-            value={values.email}
-            fullWidth
-            required
-          />
-
-          <TextInput
-            autoComplete="confirmEmail"
-            className={classes.input}
-            error={errors.confirmEmail}
-            margin="dense"
-            name="confirmEmail"
-            onChange={handleChange}
-            label="Confirme o e-mail"
-            placeholder="Confirme seu e-mail"
-            startAdornment={
-              <EmailOutlinedIcon
-                color={errors.confirmEmail ? 'error' : 'inherit'}
-              />
-            }
-            type="email"
-            variant="outlined"
-            value={values.confirmEmail}
-            fullWidth
-            required
-          />
-
-          <TextInput
-            autoComplete="password"
-            className={classes.input}
-            error={errors.password}
-            margin="dense"
-            name="password"
-            onChange={handleChange}
-            label="Senha"
-            placeholder="Digite sua senha"
-            startAdornment={
-              <LockOutlinedIcon color={errors.password ? 'error' : 'inherit'} />
-            }
-            type="password"
-            variant="outlined"
-            value={values.password}
-            fullWidth
-            required
-          />
-
-          <TextInput
-            autoComplete="confirmPassword"
-            className={classes.input}
-            error={errors.confirmPassword}
-            margin="dense"
-            name="confirmPassword"
-            onChange={handleChange}
-            label="Confirme a senha"
-            placeholder="Confirme sua senha"
-            startAdornment={
-              <LockOutlinedIcon
-                color={errors.confirmPassword ? 'error' : 'inherit'}
-              />
-            }
-            type="password"
-            variant="outlined"
-            value={values.confirmPassword}
-            fullWidth
-            required
-          />
-
-          {mutationError?.message && (
-            <Typography color="error" className={classes.mutationErrorMessage}>
-              {mutationError.message}
-            </Typography>
-          )}
-
-          <Button
-            className={classes.button}
-            color="primary"
-            variant="contained"
-            type="submit"
-            disabled={isLoading}
-            fullWidth
-            onClick={mutationError ? resetMutation : null}
-          >
-            Cadastrar
-            {isLoading && (
-              <CircularProgress
-                size="3.2rem"
-                style={{ position: 'absolute' }}
-              />
-            )}
-          </Button>
-          <Typography className={classes.signIn} variant="caption">
-            Já tem uma conta?{' '}
-            <Link component={RouterLink} to="/login">
-              Faça login!
-            </Link>
-          </Typography>
-        </Paper>
-      </form>
+      <Paper elevation={2} className={classes.paper}>
+        {!device ?
+          <PreSign setDevice={setDevice} />
+          :
+          <ValidateToken device={device} />}
+        <Typography className={classes.signIn} variant="caption">
+          Já tem uma conta?{" "}
+          <Link component={RouterLink} to="/login">
+            Faça login!
+          </Link>
+        </Typography>
+      </Paper>
     </Box>
   );
 };
+
 
 export default Signup;

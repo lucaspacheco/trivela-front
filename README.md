@@ -5,7 +5,7 @@ This is the Trivela frontend project, built with React and Snowpack.
 ## Getting Started
 
 1. Clone this repository
-```git clone https://github.com/luizeboli/trivela```
+```git clone https://github.com/lucaspacheco/trivela-front```
 
 2. Install the dependencies
 ```sh

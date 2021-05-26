@@ -75,11 +75,9 @@ const App = () => {
       error.originalMessage = error.message;
       Object.defineProperty(error, 'message', {
         get() {
-          if (!error.response) {
-            return error.originalMessage;
-          }
-          return (
-            error.response.data.errorMessage || 'Ocorreu um erro inesperado.'
+          return !error.response ? error.originalMessage
+           : (
+            error.response.data.message || 'Ocorreu um erro inesperado.'
           );
         },
       });

@@ -28,7 +28,7 @@ export default Yup.object().shape({
     ) {
       return this.parent.email === value;
     }),
-  password: Yup.string()
+  /*password: Yup.string()
     .required(validationMessages.required)
     .matches(passwordRegex, validationMessages.passwordStrength),
   confirmPassword: Yup.string()
@@ -37,5 +37,5 @@ export default Yup.object().shape({
       value,
     ) {
       return this.parent.password === value;
-    }),
+    }),*/
 });
