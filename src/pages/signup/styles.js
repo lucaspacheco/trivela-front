@@ -17,6 +17,11 @@ export default makeStyles((theme) => ({
     maxWidth: '500px',
     width: '100%',
   },
+  logo: {
+    width: '14rem',
+    height: '14rem',
+    marginBottom: theme.spacing(2),
+  },
   input: {
     marginTop: theme.spacing(3),
   },

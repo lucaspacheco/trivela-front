@@ -23,6 +23,8 @@ import TextInput from "components/TextInput";
 import api from "services/api";
 import useStyles from "./styles";
 import { phoneRegex, tokenRegex, validationMessages } from "../../utils/consts";
+import logo from "../../assets/logo.svg";
+import RenderImg from "../../components/RenderImg";
 
 
 const PreSign = ({ setDevice }) => {
@@ -39,8 +41,8 @@ const PreSign = ({ setDevice }) => {
       { isLoading, reset: resetMutation, error: mutationError }
     ] = useMutation(
       (formValues) =>
-        api.post("/devices", {
-          number: `+55${formValues.number.replace(/\D/g, "")}`
+        api.post("/auth/login", {
+          number: `+${formValues.number.replace(/\D/g, "")}`
         }),
       {
         onMutate: ()=>{
@@ -139,7 +141,7 @@ const ValidateToken = ({ device }) => {
     const classes = useStyles();
     const [message, setMessage] = useState();
     const history = useHistory();
-    const loginDevice = useAppStore((state) => state.loginDevice);
+    const login = useAppStore((state) => state.login);
 
     const validationSchema = Yup.object().shape({
       token: Yup.string()
@@ -152,14 +154,18 @@ const ValidateToken = ({ device }) => {
       { isLoading, reset: resetMutation, error: mutationError }
     ] = useMutation(
       (formValues) =>
-        api.post("/auth/validate-device", {
-          validationCode: formValues.token,
-          deviceId: device.id
-        })
+        api.post("/auth/login/validate", {
+          pincode: formValues.token,
+        },
+          {
+            headers: {
+              "x-access-token": device.token
+            }
+          })
       ,
       {
         onSuccess: ({ data }) => {
-          loginDevice(data);
+          login(data);
           history.push("/profile");
         },
         onError: (error, variables, snapshotValue) => {
@@ -257,6 +263,11 @@ const Signup = () => {
       className={classes.box}
     >
       <Paper elevation={2} className={classes.paper}>
+        <RenderImg
+          className={classes.logo}
+          src={logo}
+          al="Escudo de time de futebol escrito Trivela e embaixo Smart Club"
+        />
         {!device ?
           <PreSign setDevice={setDevice} />
           :
