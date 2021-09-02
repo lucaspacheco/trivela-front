@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link as  useHistory } from "react-router-dom";
 import {
   Box,
   Paper,
   Button,
   Typography,
-  Link,
-  CircularProgress
 } from "@material-ui/core";
-import {
-  EmailOutlined as EmailOutlinedIcon,
-  LockOutlined as LockOutlinedIcon, PhoneIphone as PhoneIphoneIcon
-} from "@material-ui/icons";
+import {PhoneIphone as PhoneIphoneIcon} from "@material-ui/icons";
 import TextInput from "components/TextInput";
 import useStyles from "./styles";
-import api from 'services/api';
 import RenderImg from "components/RenderImg";
 import { IMaskInput } from "react-imask";
 import logo from "assets/logo.svg";
+import useAppStore from "components/App/store";
+import api from 'services/api'
 
-
-const PreSign = ({setDevice}) => {  
+const PreSign = ({setDevice, retornaValor}) => {  
   const classes = useStyles();
   const [phone, setPhone] = useState()
 
@@ -36,15 +31,9 @@ const PreSign = ({setDevice}) => {
     .then(res=>{
       if(!res.data.token){
         return false
-      }      
-
-      const auth = {
-        token:res.data.token
-      }
-      const user = null
-      
-      console.log(auth, user)            
-      setDevice(phone)
+      }   
+      setDevice(res.data);
+      retornaValor(phone);
     })
     .catch(error=>{
       console.log(error)
@@ -101,23 +90,28 @@ const ValidateToken = ({device}) => {
     const history = useHistory();
     const classes = useStyles();  
     const [pincode, setPincode] = useState()
+    const login = useAppStore((state) => state.login);
 
-    const handleLogin = (e) => {  
+
+   const handleLogin = (e) => {  
       e.preventDefault()
-      api.post("/auth/login/validate", {
-        pincode:pincode
+      api.post("/auth/login/validate", 
+        {pincode:pincode}, 
+        {headers: {"x-access-token":device.token}            
       })
+      .then(res => {  
+        console.log(res) 
 
-      .then(res => {        
-        console.log(res);
+        res.data.user ? 
+        login(res.data.auth, res.data.user) 
+        : 
+        login(res.data.auth);
+        history.push("/profile");
       })
-      .catch(error=>{
-        console.log(error)
-        history.push('/auth/login')
+     .catch(error=>{
+        console.log(error)         
       })
     }
-
-    
     
     return (
       <>
@@ -142,7 +136,7 @@ const ValidateToken = ({device}) => {
                 onChange={e =>setPincode(e.target.value)}
               />
 
-               <Typography color={"primary"} align={"center"}><small>Insira o código que recebeu em {device}</small></Typography>
+               <Typography color={"primary"} align={"center"}><small>Insira o código que recebeu em seu celular</small></Typography>
               
               <Button
                 className={classes.button}
@@ -160,9 +154,10 @@ const ValidateToken = ({device}) => {
     );
    }
 
-const Login = (props) => {   
+const Login = () => {   
     const classes = useStyles();
     const [device, setDevice] = useState('')
+    
     
     return (
       <>
