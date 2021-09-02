@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link as RouterLink, useHistory } from "react-router-dom";
-import { InputLabel } from '@material-ui/core';
-import { OutlinedInput } from '@material-ui/core';
-import { FormHelperText } from '@material-ui/core';
 import {
   Box,
   Paper,
@@ -17,9 +14,11 @@ import {
 } from "@material-ui/icons";
 import TextInput from "components/TextInput";
 import useStyles from "./styles";
+import api from 'services/api';
 import RenderImg from "components/RenderImg";
 import { IMaskInput } from "react-imask";
 import logo from "assets/logo.svg";
+
 
 const PreSign = ({setDevice}) => {  
   const classes = useStyles();
@@ -27,7 +26,29 @@ const PreSign = ({setDevice}) => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    setDevice(phone); 
+    if(!phone){
+      return false;
+    }
+            
+     api.post("/auth/login", {
+        number: phone
+     })
+    .then(res=>{
+      if(!res.data.token){
+        return false
+      }      
+
+      const auth = {
+        token:res.data.token
+      }
+      const user = null
+      
+      console.log(auth, user)            
+      setDevice(phone)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
   }
 
   return (
@@ -83,9 +104,20 @@ const ValidateToken = ({device}) => {
 
     const handleLogin = (e) => {  
       e.preventDefault()
-            setShow(true)         
-            history.push('/leagues')        
+      api.post("/auth/login/validate", {
+        pincode:pincode
+      })
+
+      .then(res => {        
+        console.log(res);
+      })
+      .catch(error=>{
+        console.log(error)
+        history.push('/auth/login')
+      })
     }
+
+    
     
     return (
       <>

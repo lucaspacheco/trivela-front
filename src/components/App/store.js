@@ -1,5 +1,5 @@
 import create from "zustand";
-import { deleteCookie, deleteCookies, getCookie, setCookie } from "utils/helpers";
+import {deleteCookies, getCookie, setCookie } from "utils/helpers";
 
 export default create((set) => ({
     userInfo: {},

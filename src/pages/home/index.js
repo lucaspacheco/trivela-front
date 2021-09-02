@@ -1,6 +1,5 @@
 import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
-
 import AuthPageLayout from 'components/AuthPageLayout';
 import { CircularProgress, Typography } from '@material-ui/core';
 import LeagueCard from 'components/LeagueCard';
