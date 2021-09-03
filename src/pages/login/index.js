@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as  useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Box,
   Paper,
@@ -87,9 +87,9 @@ const PreSign = ({setDevice, retornaValor}) => {
 }
 
 const ValidateToken = ({device}) => { 
-    const history = useHistory();
     const classes = useStyles();  
-    const [pincode, setPincode] = useState()
+    const history = useHistory();
+    const [pincode, setPincode] = useState();
     const login = useAppStore((state) => state.login);
 
 
@@ -100,8 +100,6 @@ const ValidateToken = ({device}) => {
         {headers: {"x-access-token":device.token}            
       })
       .then(res => {  
-        console.log(res) 
-
         res.data.user ? 
         login(res.data.auth, res.data.user) 
         : 
