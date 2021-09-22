@@ -33,7 +33,6 @@ const PreSign = ({setDevice, retornaValor}) => {
         return false
       }   
       setDevice(res.data);
-      retornaValor(phone);
     })
     .catch(error=>{
       console.log(error)

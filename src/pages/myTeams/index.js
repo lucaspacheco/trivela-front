@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Delete as DeleteIcon } from '@material-ui/icons';
 import { IconButton, Tooltip, Typography, Button } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -14,6 +14,17 @@ const MyTeams = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const classes = useStyles();
   const { teams, isFetching } = useMyTeams();
+
+  useEffect(()=>{
+    api.get('/my-teams')
+     .then(res=>{      
+      (res.data);            
+    })
+      .catch(error=>{
+        console.log(error);
+    })
+  }, []);
+
 
   return (
     <AuthPageLayout
